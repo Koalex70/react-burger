@@ -1,0 +1,16 @@
+.wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.constructor {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*.title {*/
+/*    font-style: normal;*/
+/*    font-weight: 700;*/
+/*    font-size: 36px;*/
+/*    line-height: 40px;*/
+/*}*/

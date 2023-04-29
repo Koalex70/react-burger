@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    max-height: calc(100vh - 528px);
+    overflow-y: auto;
+}
+
+.container::-webkit-scrollbar {
+    width: 8px;
+    background-color: #2F2F37 ;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+}
+

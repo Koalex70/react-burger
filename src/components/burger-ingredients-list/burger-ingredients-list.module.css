@@ -1,0 +1,18 @@
+.container {
+    margin-top: 40px;
+}
+
+.burgerList {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.title {
+    margin-bottom: 24px;
+
+    /*font-style: normal;*/
+    /*font-weight: 700;*/
+    /*font-size: 24px;*/
+    /*line-height: 30px;*/
+}
