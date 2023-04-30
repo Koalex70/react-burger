@@ -1,6 +1,8 @@
 import React from "react";
 import BurgerConstructorElement from "../burger-constructor-element/burger-constructor-element";
 import styles from "./burger-constructor-list.module.css";
+import PropTypes from 'prop-types';
+import {DATA_PROP_TYPES} from "../../constants/constants";
 
 export default function BurgerConstructorList(props) {
     return (
@@ -17,4 +19,8 @@ export default function BurgerConstructorList(props) {
             })}
         </div>
     )
+}
+
+BurgerConstructorList.propTypes = {
+    ingredients: PropTypes.arrayOf(DATA_PROP_TYPES).isRequired,
 }

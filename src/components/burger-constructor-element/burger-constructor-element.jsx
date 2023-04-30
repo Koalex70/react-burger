@@ -2,7 +2,9 @@ import React from "react";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "../burger-constructor-element/burger-constructor-element.module.css";
 
-export default function burgerConstructorElement(props) {
+import PropTypes from 'prop-types';
+
+export default function BurgerConstructorElement(props) {
     return (
         <div className={styles.container}>
             <DragIcon type={"primary"}/>
@@ -10,4 +12,10 @@ export default function burgerConstructorElement(props) {
             extraClass={styles.element}/>
         </div>
     )
+}
+
+BurgerConstructorElement.propTypes = {
+    name: PropTypes.string.isRequired,
+    imageMobile: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired
 }

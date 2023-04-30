@@ -17,6 +17,7 @@ nav {
 .constructor span {
     float: right;
     padding: 0 0 0 8px;
+    color: #F2F2F3;
 }
 
 .orderList {
@@ -26,6 +27,7 @@ nav {
 .orderList span {
     float: right;
     padding: 0 0 0 8px;
+    color: #8585AD;
 }
 
 .personalAccount {
@@ -34,15 +36,21 @@ nav {
 .personalAccount span {
     float: right;
     padding: 0 0 0 8px;
+    color: #8585AD;
 }
 
 .logo {
 }
 
-.leftSIde{
+.leftSIde {
     display: flex;
     flex-direction: row;
 }
+
+.link {
+    text-decoration: none;
+}
+
 
 
 

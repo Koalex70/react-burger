@@ -2,6 +2,8 @@ import React from "react";
 import BurgerIngredientsElement from "../burger-ingredients-element/burger-ingredients-element";
 import styles from "./burger-ingredients-list.module.css";
 import classNames from "classnames";
+import PropTypes from 'prop-types';
+import {DATA_PROP_TYPES} from "../../constants/constants";
 
 export default function BurgerIngredientsList(props) {
 
@@ -18,4 +20,9 @@ export default function BurgerIngredientsList(props) {
             </div>
         </div>
     );
+}
+
+BurgerIngredientsList.propTypes = {
+    title: PropTypes.string.isRequired,
+    list: PropTypes.arrayOf(DATA_PROP_TYPES).isRequired,
 }

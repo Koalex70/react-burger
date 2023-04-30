@@ -8,20 +8,26 @@ export default function AppHeader() {
             <nav>
                 <div className={styles.leftSIde}>
                     <div className={styles.constructor}>
-                        <BurgerIcon type="primary"/>
-                        <span className="text text_type_main-default">Конструктор</span>
+                        <a href="#constructor" className={styles.link}>
+                            <BurgerIcon type="primary"/>
+                            <span className="text text_type_main-default">Конструктор</span>
+                        </a>
                     </div>
                     <div className={styles.orderList}>
-                        <ListIcon type="secondary"/>
-                        <span className="text text_type_main-default">Лента заказов</span>
+                        <a href="#orderList" className={styles.link}>
+                            <ListIcon type="secondary"/>
+                            <span className="text text_type_main-default">Лента заказов</span>
+                        </a>
                     </div>
                 </div>
                 <div className={styles.logo}>
                     <Logo/>
                 </div>
                 <div className={styles.personalAccount}>
-                    <ProfileIcon type="secondary"/>
-                    <span className="text text_type_main-default">Личный кабинет</span>
+                    <a href="#orderList" className={styles.link}>
+                        <ProfileIcon type="secondary"/>
+                        <span className="text text_type_main-default">Личный кабинет</span>
+                    </a>
                 </div>
             </nav>
         </header>
