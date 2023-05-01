@@ -1,0 +1,13 @@
+.container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 240px);
+    position: relative;
+    align-items: flex-end;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+}
