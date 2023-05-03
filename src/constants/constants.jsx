@@ -1,8 +1,13 @@
 import PropTypes from "prop-types";
 
+export const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
+
 export const BUN = 'bun';
 export const SAUCE = 'sauce';
 export const MAIN = 'main';
+
+export const MODAL_ROOT = document.getElementById("react-modals");
+
 
 export const DATA_PROP_TYPES = PropTypes.shape({
     _id: PropTypes.string.isRequired,
