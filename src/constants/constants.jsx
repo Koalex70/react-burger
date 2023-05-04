@@ -7,7 +7,7 @@ export const SAUCE = 'sauce';
 export const MAIN = 'main';
 
 export const MODAL_ROOT = document.getElementById("react-modals");
-
+export const ECS_CODE = 27;
 
 export const DATA_PROP_TYPES = PropTypes.shape({
     _id: PropTypes.string.isRequired,

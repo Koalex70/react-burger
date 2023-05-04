@@ -37,6 +37,6 @@ IngredientDetails.propTypes = {
         proteins: PropTypes.number.isRequired,
         fat: PropTypes.number.isRequired,
         carbohydrates: PropTypes.number.isRequired,
-    })
+    }).isRequired
 }
 
