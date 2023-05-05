@@ -9,17 +9,20 @@ import {BUN, DATA_PROP_TYPES} from "../../constants/constants";
 
 export default function BurgerConstructor(props) {
 
-    const bun = React.useMemo(() => props.data.filter((ingredient) => ingredient.type === BUN && ingredient.__v > 0)[0], [props.data]);
-    const ingredients = React.useMemo(() => props.data.filter((ingredient) => ingredient.__v > 0), [props.data]);
-    const price = React.useMemo(() => props.data.reduce((acc,curr) => acc + curr.price, 0), [props.data]);
+    const bun = React.useMemo(() => props.data.filter((ingredient) => ingredient.type === BUN)[0], [props.data]);
+    const ingredients = React.useMemo(() => props.data.filter((ingredient) => ingredient.type !== BUN), [props.data]);
+    const price = React.useMemo(() => props.data.reduce((acc, curr) => acc + curr.price, 0), [props.data]);
 
     return (
         <div className={styles.container}>
-            <BurgerConstructorTopElement name={bun.name} image_mobile={bun.image_mobile} price={bun.price} />
-            <BurgerConstructorList ingredients={ingredients}/>
+            {bun && <BurgerConstructorTopElement name={bun.name} image_mobile={bun.image_mobile} price={bun.price}/>}
+            {ingredients && <BurgerConstructorList ingredients={ingredients}/>}
             <div className={styles.bottom}>
-                <BurgerConstructorBottomElement name={bun.name} image_mobile={bun.image_mobile} price={bun.price}/>
-                <ButtonWithPrice price={price}/>
+                {
+                    bun &&
+                    <BurgerConstructorBottomElement name={bun.name} image_mobile={bun.image_mobile} price={bun.price}/>
+                }
+                {price && <ButtonWithPrice price={price}/>}
             </div>
         </div>
     );

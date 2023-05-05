@@ -1,13 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 import AppHeader from "../app-header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import data from "../../utils/data";
-
 import styles from "./app.module.css";
+import {fetchData} from "../../utils/api";
 
 export default function App() {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetchData()
+            .then(result => setData(result))
+            .catch(error => console.log(error));
+    }, []);
+
     return (
         <div className={styles.wrapper}>
             <AppHeader/>
