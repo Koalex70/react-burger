@@ -3,7 +3,6 @@ import {CurrencyIcon, Counter} from "@ya.praktikum/react-developer-burger-ui-com
 import styles from "./burger-ingredients-element.module.css";
 import classNames from "classnames";
 import Modal from "../modal/modal";
-import ModalOverlay from "../modal-overlay/modal-overlay";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import {DATA_PROP_TYPES} from "../../constants/constants";
 

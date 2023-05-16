@@ -1,12 +1,13 @@
 import React from "react";
-import styles from "./order-details.module.css"
+import styles from "./order-details.module.css";
+import PropTypes from "prop-types";
 import ClassNames from "classnames";
 
-export default function OrderDetails() {
+export default function OrderDetails({name, orderNumber}) {
     return (
         <div className={styles.container}>
-            <h3 className={ClassNames(["text text_type_digits-large mb-8", styles.numberShadow])}>034536</h3>
-            <h4 className={"text text_type_main-medium mb-15"}>идентификатор заказа</h4>
+            <h3 className={ClassNames(["text text_type_digits-large mb-8", styles.numberShadow])}>{orderNumber}</h3>
+            <h4 className={"text text_type_main-medium mb-15"}>{name}</h4>
             <div className={styles.markIcon}>
                 <svg width="107" height="102" viewBox="0 0 107 102" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" clipRule="evenodd" d="M8.36637 37.3873C2.54454 45.5044 2.54455 56.4957 8.36637 64.6127L28.3336 92.4518C34.1554 100.569 44.4748 103.965 53.8947 100.865L86.2023 90.2313C95.6223 87.1309 102 78.2387 102 68.2055V33.7945C102 23.7612 95.6222 14.8691 86.2023 11.7687L53.8947 1.13508C44.4748 -1.96536 34.1554 1.43114 28.3336 9.54819L8.36637 37.3873Z" fill="url(#paint0_radial_311_23)" fillOpacity="0.25"/>
@@ -33,4 +34,9 @@ export default function OrderDetails() {
             <p className={"mb-30 text_type_main-default text_color_inactive"}>Дождитесь готовности на орбитальной станции</p>
         </div>
     )
+}
+
+OrderDetails.propTypes = {
+    name: PropTypes.string,
+    orderNumber: PropTypes.number
 }

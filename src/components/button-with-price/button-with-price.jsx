@@ -4,13 +4,44 @@ import styles from "./button-with-price.module.css";
 import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
+import {useContext} from 'react';
+import {BurgerConstructorContext} from "../../services/contexts/appContext";
+import {createOrder} from "../../utils/api";
 
-export default function ButtonWithPrice(props) {
+function parseIngredientsIds(burgerData) {
+    let ids = {ingredients: []};
+
+    ids.ingredients.push(burgerData.topBun._id);
+    ids.ingredients.push(burgerData.bottomBun._id);
+
+    burgerData.ingredients.forEach(ingredient => {
+        ids.ingredients.push(ingredient._id);
+    });
+
+    return ids;
+}
+
+export default function ButtonWithPrice({price}) {
 
     const [visible, setVisible] = React.useState(false);
+    const [burgerData] = useContext(BurgerConstructorContext);
+    const [orderDetails, setOrderDetails] = React.useState({});
 
     const handleOpenModal = () => {
-        setVisible(true);
+        createOrder(parseIngredientsIds(burgerData))
+            .then(data => {
+                if (data.success) {
+                    setOrderDetails({
+                        name: data.name,
+                        orderNumber: data.order.number
+                    });
+                    setVisible(true);
+                }
+                else {
+                    alert('Не получилось оформить заказ');
+                }
+            });
+
     }
 
     const handleCloseModal = () => {
@@ -19,14 +50,14 @@ export default function ButtonWithPrice(props) {
 
     const modal = (
         <Modal show={visible} onClose={handleCloseModal}>
-            <OrderDetails/>
+            <OrderDetails name={orderDetails.name} orderNumber={orderDetails.orderNumber}/>
         </Modal>
     );
 
     return (
         <>
             <div className={styles.container}>
-                <span className={styles.price}>{props.price}</span>
+                <span className={styles.price}>{price.price}</span>
                 <div className={styles.currency}>
                     <CurrencyIcon type={"primary"}/>
                 </div>
@@ -40,5 +71,7 @@ export default function ButtonWithPrice(props) {
 }
 
 ButtonWithPrice.propTypes = {
-    price: PropTypes.number.isRequired,
+    price: PropTypes.shape({
+        price: PropTypes.number.isRequired
+    }).isRequired,
 }

@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from "react";
+import React, {useContext, useEffect, useMemo} from "react";
 
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 
@@ -7,13 +7,16 @@ import BurgerIngredientsList from "../burger-ingredients-list/burger-ingredients
 import {BUN, SAUCE, MAIN, DATA_PROP_TYPES} from "../../constants/constants";
 
 import PropTypes from 'prop-types';
+import {DataContext} from "../../services/contexts/appContext";
 
-export default function BurgerIngredients(props) {
+export default function BurgerIngredients() {
     const [current, setCurrent] = React.useState(BUN);
 
-    const bun = useMemo(() => props.data.filter((ingredient) => ingredient.type === BUN), [props.data]);
-    const sauce = useMemo(() => props.data.filter((ingredient) => ingredient.type === SAUCE), [props.data]);
-    const main = useMemo(() => props.data.filter((ingredient) => ingredient.type === MAIN), [props.data]);
+    const data = useContext(DataContext);
+
+    const bun = useMemo(() => data.filter((ingredient) => ingredient.type === BUN), [data]);
+    const sauce = useMemo(() => data.filter((ingredient) => ingredient.type === SAUCE), [data]);
+    const main = useMemo(() => data.filter((ingredient) => ingredient.type === MAIN), [data]);
 
     return (
         <div className={styles.container}>
@@ -49,6 +52,6 @@ export default function BurgerIngredients(props) {
     )
 }
 
-BurgerIngredients.propTypes = {
-    data: PropTypes.arrayOf(DATA_PROP_TYPES).isRequired
-}
+// BurgerIngredients.propTypes = {
+//     data: PropTypes.arrayOf(DATA_PROP_TYPES).isRequired
+// }
