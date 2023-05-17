@@ -4,8 +4,6 @@ import styles from "./button-with-price.module.css";
 import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
-import {useContext} from 'react';
-import {BurgerConstructorContext} from "../../services/contexts/appContext";
 import {createOrder} from "../../utils/api";
 
 function parseIngredientsIds(burgerData) {
@@ -21,10 +19,9 @@ function parseIngredientsIds(burgerData) {
     return ids;
 }
 
-export default function ButtonWithPrice({price}) {
+export default function ButtonWithPrice({price, burgerData}) {
 
     const [visible, setVisible] = React.useState(false);
-    const [burgerData] = useContext(BurgerConstructorContext);
     const [orderDetails, setOrderDetails] = React.useState({});
 
     const handleOpenModal = () => {
@@ -36,12 +33,10 @@ export default function ButtonWithPrice({price}) {
                         orderNumber: data.order.number
                     });
                     setVisible(true);
-                }
-                else {
+                } else {
                     alert('Не получилось оформить заказ');
                 }
             });
-
     }
 
     const handleCloseModal = () => {
@@ -57,7 +52,7 @@ export default function ButtonWithPrice({price}) {
     return (
         <>
             <div className={styles.container}>
-                <span className={styles.price}>{price.price}</span>
+                <span className={styles.price}>{price}</span>
                 <div className={styles.currency}>
                     <CurrencyIcon type={"primary"}/>
                 </div>
@@ -70,8 +65,12 @@ export default function ButtonWithPrice({price}) {
     )
 }
 
+// ButtonWithPrice.propTypes = {
+//     price: PropTypes.shape({
+//         price: PropTypes.number.isRequired
+//     }).isRequired,
+// }
+
 ButtonWithPrice.propTypes = {
-    price: PropTypes.shape({
-        price: PropTypes.number.isRequired
-    }).isRequired,
+    price: PropTypes.number.isRequired
 }

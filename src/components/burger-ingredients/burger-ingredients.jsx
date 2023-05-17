@@ -1,12 +1,11 @@
-import React, {useContext, useEffect, useMemo} from "react";
+import React, {useContext, useMemo} from "react";
 
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 
 import styles from "./burger-ingredients.module.css";
 import BurgerIngredientsList from "../burger-ingredients-list/burger-ingredients-list";
-import {BUN, SAUCE, MAIN, DATA_PROP_TYPES} from "../../constants/constants";
+import {BUN, SAUCE, MAIN} from "../../constants/constants";
 
-import PropTypes from 'prop-types';
 import {DataContext} from "../../services/contexts/appContext";
 
 export default function BurgerIngredients() {

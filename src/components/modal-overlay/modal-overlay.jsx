@@ -1,8 +1,5 @@
 import React from "react";
-
 import styles from "./modal-overlay.module.css";
-import {createPortal} from "react-dom";
-import {MODAL_ROOT} from "../../constants/constants";
 import PropTypes from "prop-types";
 
 

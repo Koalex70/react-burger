@@ -5,7 +5,6 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import styles from "./burger-constructor-top-element.module.css"
-import {DATA_PROP_TYPES} from "../../constants/constants";
 import PropTypes from "prop-types";
 
 export default function BurgerConstructorTopElement(props) {

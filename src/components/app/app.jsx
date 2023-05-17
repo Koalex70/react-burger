@@ -5,31 +5,16 @@ import BurgerConstructor from "../burger-constructor/burger-constructor";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import styles from "./app.module.css";
 import {fetchData} from "../../utils/api";
-import {BurgerConstructorContext, DataContext} from "../../services/contexts/appContext";
-import {BUN} from "../../constants/constants";
+import {DataContext} from "../../services/contexts/appContext";
 
 export default function App() {
 
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const burgerConstructorState = useState({topBun: {}, bottomBun: {}, ingredients: []});
-    const [, setBurgerConstructor] = burgerConstructorState;
-
     useEffect(() => {
         fetchData()
-            .then((result) => {
-                setData(result);
-
-                let bun = result.filter((ingredient) => ingredient.type === BUN)[0];
-                let ingredients = result.filter((ingredient) => ingredient.type !== BUN);
-
-                setBurgerConstructor({
-                    topBun: bun,
-                    bottomBun: bun,
-                    ingredients: ingredients
-                });
-            })
+            .then(result => setData(result))
             .catch(error => console.log(error))
             .finally(() => {
                 setIsLoading(false)
@@ -47,10 +32,8 @@ export default function App() {
                         <div className={styles.constructor}>
                             <DataContext.Provider value={data}>
                                 <BurgerIngredients/>
-                            </DataContext.Provider>
-                            <BurgerConstructorContext.Provider value={burgerConstructorState}>
                                 <BurgerConstructor/>
-                            </BurgerConstructorContext.Provider>
+                            </DataContext.Provider>
                         </div>
                     </section>
                 </main>
