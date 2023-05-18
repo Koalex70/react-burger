@@ -21,8 +21,7 @@ function parseIngredientsIds(burgerData) {
 
 export default function ButtonWithPrice({price, burgerData}) {
 
-    const [visible, setVisible] = React.useState(false);
-    const [orderDetails, setOrderDetails] = React.useState({});
+    const [orderDetails, setOrderDetails] = React.useState(null);
 
     const handleOpenModal = () => {
         createOrder(parseIngredientsIds(burgerData))
@@ -32,7 +31,6 @@ export default function ButtonWithPrice({price, burgerData}) {
                         name: data.name,
                         orderNumber: data.order.number
                     });
-                    setVisible(true);
                 } else {
                     alert('Не получилось оформить заказ');
                 }
@@ -40,12 +38,12 @@ export default function ButtonWithPrice({price, burgerData}) {
     }
 
     const handleCloseModal = () => {
-        setVisible(false);
+        setOrderDetails(null)
     }
 
     const modal = (
-        <Modal show={visible} onClose={handleCloseModal}>
-            <OrderDetails name={orderDetails.name} orderNumber={orderDetails.orderNumber}/>
+        <Modal show={orderDetails} onClose={handleCloseModal}>
+            <OrderDetails name={orderDetails?.name} orderNumber={orderDetails?.orderNumber}/>
         </Modal>
     );
 
@@ -60,16 +58,10 @@ export default function ButtonWithPrice({price, burgerData}) {
                     Оформить заказ
                 </Button>
             </div>
-            {visible && modal}
+            {orderDetails && modal}
         </>
     )
 }
-
-// ButtonWithPrice.propTypes = {
-//     price: PropTypes.shape({
-//         price: PropTypes.number.isRequired
-//     }).isRequired,
-// }
 
 ButtonWithPrice.propTypes = {
     price: PropTypes.number.isRequired
