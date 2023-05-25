@@ -4,46 +4,32 @@ import styles from "./button-with-price.module.css";
 import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
-import {createOrder} from "../../utils/api";
+import {useDispatch, useSelector} from "react-redux";
+import {DELETE_ORDER_DETAILS, postOrderDetails} from "../../services/actions/order-details";
 
-function parseIngredientsIds(burgerData) {
-    let ids = {ingredients: []};
+export default function ButtonWithPrice({price}) {
 
-    ids.ingredients.push(burgerData.topBun._id);
-    ids.ingredients.push(burgerData.bottomBun._id);
+    const dispatch = useDispatch();
 
-    burgerData.ingredients.forEach(ingredient => {
-        ids.ingredients.push(ingredient._id);
-    });
-
-    return ids;
-}
-
-export default function ButtonWithPrice({price, burgerData}) {
-
-    const [orderDetails, setOrderDetails] = React.useState(null);
+    const burgerConstructor = useSelector(state => state.burgerConstructor);
+    const orderDetails = useSelector(state => state.orderDetails.orderDetails);
 
     const handleOpenModal = () => {
-        createOrder(parseIngredientsIds(burgerData))
-            .then(data => {
-                if (data.success) {
-                    setOrderDetails({
-                        name: data.name,
-                        orderNumber: data.order.number
-                    });
-                } else {
-                    alert('Не получилось оформить заказ');
-                }
-            });
+
+        if (!burgerConstructor.bun && !burgerConstructor.ingredients) return;
+
+        dispatch(postOrderDetails(burgerConstructor));
     }
 
     const handleCloseModal = () => {
-        setOrderDetails(null)
+        dispatch({
+            type: DELETE_ORDER_DETAILS
+        })
     }
 
     const modal = (
         <Modal show={orderDetails} onClose={handleCloseModal}>
-            <OrderDetails name={orderDetails?.name} orderNumber={orderDetails?.orderNumber}/>
+            <OrderDetails />
         </Modal>
     );
 

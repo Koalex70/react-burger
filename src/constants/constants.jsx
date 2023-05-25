@@ -8,6 +8,8 @@ export const BUN = 'bun';
 export const SAUCE = 'sauce';
 export const MAIN = 'main';
 
+export  const BUN_COUNT = 2;
+
 export const MODAL_ROOT = document.getElementById("react-modals");
 export const ECS_CODE = 27;
 
