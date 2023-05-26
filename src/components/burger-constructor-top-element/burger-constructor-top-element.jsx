@@ -11,7 +11,7 @@ export default function BurgerConstructorTopElement(props) {
 
     return (
         <div>
-            <ConstructorElement text={props.name} thumbnail={props.image_mobile} price={props.price}
+            <ConstructorElement text={props.name  + ' (верх)'} thumbnail={props.image_mobile} price={props.price}
                                 type={"top"} isLocked="true" extraClass={styles.element}/>
         </div>
     );

@@ -2,7 +2,8 @@ import {
     UPDATE_BURGER_CONSTRUCTOR_BUN,
     ADD_BURGER_CONSTRUCTOR_INGREDIENTS,
     DELETE_BURGER_CONSTRUCTOR_INGREDIENTS,
-    SET_BURGER_CONSTRUCTOR_INGREDIENTS
+    SET_BURGER_CONSTRUCTOR_INGREDIENTS,
+    SET_BURGER_CONSTRUCTOR_INITIAL_STATE
 } from "../actions/burger-constructor";
 
 const initialState = {
@@ -35,6 +36,9 @@ export const burgerConstructorReducer = (state = initialState, action) => {
                 ...state,
                 ingredients: state.ingredients.filter(ingredient => ingredient.uuid !== action.uuid)
             }
+        }
+        case SET_BURGER_CONSTRUCTOR_INITIAL_STATE: {
+            return initialState;
         }
         default: {
             return state;

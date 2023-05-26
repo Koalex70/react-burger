@@ -1,4 +1,7 @@
-import {API_BURGER_ORDERS_ENDPOINT, API_URL} from "../../constants/constants";
+import {API_BURGER_ORDERS_ENDPOINT} from "../../constants/constants";
+import {request} from "../../utils/api";
+import {SET_BURGER_CONSTRUCTOR_INITIAL_STATE} from "./burger-constructor";
+import {SET_BURGER_INGREDIENTS_COUNT_ZERO} from "./burger-ingredients";
 
 export const POST_ORDER_DETAILS_REQUEST = 'POST_ORDER_DETAILS_REQUEST';
 export const POST_ORDER_DETAILS_SUCCESS = 'POST_ORDER_DETAILS_SUCCESS';
@@ -26,31 +29,23 @@ export function postOrderDetails(burgerData) {
         dispatch({
             type: POST_ORDER_DETAILS_REQUEST
         });
-
-        fetch(API_URL + '/' + API_BURGER_ORDERS_ENDPOINT, {
+        request(API_BURGER_ORDERS_ENDPOINT, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify(parseIngredientsIds(burgerData))
-        }).then(res => {
-            return res.ok ? res.json() : res.json().then(err => {
-                dispatch({
-                    type: POST_ORDER_DETAILS_FAILED
-                })
-                return Promise.reject(err)
-            });
         }).then(data => {
-            if (data && data.success) {
-                dispatch({
-                    type: POST_ORDER_DETAILS_SUCCESS,
-                    details: {name: data.name, number: data.order.number}
-                })
-            } else {
-                dispatch({
-                    type: POST_ORDER_DETAILS_FAILED
-                })
-            }
+            dispatch({
+                type: POST_ORDER_DETAILS_SUCCESS,
+                details: {name: data.name, number: data.order.number}
+            });
+            dispatch({
+               type: SET_BURGER_CONSTRUCTOR_INITIAL_STATE
+            });
+            dispatch({
+                type: SET_BURGER_INGREDIENTS_COUNT_ZERO
+            })
         }).catch(err => {
             dispatch({
                 type: POST_ORDER_DETAILS_FAILED

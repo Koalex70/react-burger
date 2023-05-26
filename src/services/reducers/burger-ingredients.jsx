@@ -2,7 +2,7 @@ import {
     ADD_BURGER_INGREDIENT_COUNT,
     GET_BURGER_INGREDIENTS_FAILED,
     GET_BURGER_INGREDIENTS_REQUEST,
-    GET_BURGER_INGREDIENTS_SUCCESS, REMOVE_BURGER_INGREDIENT_COUNT,
+    GET_BURGER_INGREDIENTS_SUCCESS, REMOVE_BURGER_INGREDIENT_COUNT, SET_BURGER_INGREDIENTS_COUNT_ZERO,
 } from "../actions/burger-ingredients";
 
 const initialState = {
@@ -37,13 +37,27 @@ export const burgerIngredientsReducer = (state = initialState, action) => {
         case ADD_BURGER_INGREDIENT_COUNT: {
             return {
                 ...state,
-                burgerIngredients: [...state.burgerIngredients.map(ingredient => ingredient._id === action.id ? {...ingredient, count: ingredient.count + 1} : ingredient)]
+                burgerIngredients: [...state.burgerIngredients.map(ingredient => ingredient._id === action.id ? {
+                    ...ingredient,
+                    count: ingredient.count + 1
+                } : ingredient)]
             }
         }
         case REMOVE_BURGER_INGREDIENT_COUNT: {
             return {
                 ...state,
-                burgerIngredients: [...state.burgerIngredients.map(ingredient => ingredient._id === action.id ? {...ingredient, count: ingredient.count - 1} : ingredient)]
+                burgerIngredients: [...state.burgerIngredients.map(ingredient => ingredient._id === action.id ? {
+                    ...ingredient,
+                    count: ingredient.count - 1
+                } : ingredient)]
+            }
+        }
+        case SET_BURGER_INGREDIENTS_COUNT_ZERO: {
+            return {
+                ...state,
+                burgerIngredients: [...state.burgerIngredients.map(ingredient => {
+                    return {...ingredient, count: 0}
+                })]
             }
         }
         default: {

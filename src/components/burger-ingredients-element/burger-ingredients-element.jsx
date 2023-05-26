@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-ingredients-element.module.css";
 import classNames from "classnames";
@@ -12,15 +12,16 @@ import {
     SET_BURGER_INGREDIENT_DETAILS
 } from "../../services/actions/ingredient-details";
 import {useDrag} from "react-dnd";
+import {useModal} from "../../hooks/use-modal";
 
 export default function BurgerIngredientsElement(props) {
 
     const dispatch = useDispatch();
-    const [visible, setVisible] = useState(false);
+    const {isModalOpen, openModal, closeModal} = useModal();
 
     const [, dragRef] = useDrag({
-       type: "ingredient",
-       item: props.element
+        type: "ingredient",
+        item: props.element
     });
 
     const handleOpenModal = () => {
@@ -29,7 +30,7 @@ export default function BurgerIngredientsElement(props) {
             details: props.element
         });
 
-        setVisible(true);
+        openModal();
     }
 
     const handleCloseModal = () => {
@@ -37,11 +38,11 @@ export default function BurgerIngredientsElement(props) {
             type: DELETE_BURGER_INGREDIENT_DETAILS,
         });
 
-        setVisible(false);
+        closeModal();
     }
 
     const modal = (
-        <Modal title="Детали ингредиента" show={visible} onClose={handleCloseModal}>
+        <Modal title="Детали ингредиента" show={isModalOpen} onClose={handleCloseModal}>
             <IngredientDetails/>
         </Modal>
     );
@@ -49,7 +50,7 @@ export default function BurgerIngredientsElement(props) {
     return (
         <>
             <div className={styles.element} onClick={handleOpenModal} ref={dragRef}>
-                <img src={props.element.image} alt=""/>
+                <img src={props.element.image} alt={props.element.name}/>
                 <BurgerIngredientsCounter count={props.element.count} type={props.element.type}/>
                 <div className={styles.price}>
                     <span className={"text text_type_main-default"}>{props.element.price}</span>
@@ -57,7 +58,7 @@ export default function BurgerIngredientsElement(props) {
                 </div>
                 <h4 className={classNames(styles.name, "text text_type_main-default")}>{props.element.name}</h4>
             </div>
-            {visible && modal}
+            {isModalOpen && modal}
         </>
     )
 }

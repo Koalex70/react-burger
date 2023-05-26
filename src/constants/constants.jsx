@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export const API_URL = 'https://norma.nomoreparties.space/api';
+export const API_URL = 'https://norma.nomoreparties.space/api/';
 export const API_BURGER_INGREDIENTS_ENDPOINT = 'ingredients';
 export const API_BURGER_ORDERS_ENDPOINT = 'orders';
 

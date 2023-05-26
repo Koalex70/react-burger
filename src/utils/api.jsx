@@ -1,24 +1,21 @@
-import {API_BURGER_INGREDIENTS_ENDPOINT, API_BURGER_ORDERS_ENDPOINT, API_URL} from "../constants/constants";
+import {API_URL} from "../constants/constants";
 
-async function checkResponse (response) {
-    return response.ok ? response.json() : response.json().then(err => Promise.reject(err))
-}
+const checkResponse = (res) => {
+    if (res.ok) {
+        return res.json();
+    }
+    return Promise.reject(`Ошибка ${res.status}`);
+};
 
-export async function fetchData() {
-    return await fetch(API_URL + '/' + API_BURGER_INGREDIENTS_ENDPOINT)
-        .then(response => checkResponse(response))
-        .then(body => body.data)
-        .catch(error => console.log(error));
-}
+const checkSuccess = (res) => {
+    if (res && res.success) {
+        return res;
+    }
+    return Promise.reject(`Ответ не success: ${res}`);
+};
 
-export async function createOrder(order) {
-
-    return await fetch(API_URL + '/' + API_BURGER_ORDERS_ENDPOINT, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(order)
-    }).then(response => checkResponse(response))
-    .catch(error => console.log(error));
-}
+export const request = (endpoint, options = null) => {
+    return fetch(`${API_URL}${endpoint}`, options)
+        .then(checkResponse)
+        .then(checkSuccess);
+};

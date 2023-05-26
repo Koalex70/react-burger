@@ -8,6 +8,7 @@ import {BUN, SAUCE, MAIN} from "../../constants/constants";
 
 import {useDispatch, useSelector} from "react-redux";
 import {getBurgerIngredients} from "../../services/actions/burger-ingredients";
+import classNames from "classnames";
 
 export default function BurgerIngredients() {
     const [current, setCurrent] = useState(BUN);
@@ -56,7 +57,7 @@ export default function BurgerIngredients() {
 
     return (
         <div className={styles.container}>
-            <div style={{display: 'flex'}} className={"text text_type_main-default"}>
+            <div className={classNames([styles.tabs, "text text_type_main-default"])}>
                 <Tab value={BUN} active={current === BUN} onClick={setCurrent}>
                     Булки
                 </Tab>

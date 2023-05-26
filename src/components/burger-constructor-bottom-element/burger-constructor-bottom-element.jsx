@@ -10,7 +10,7 @@ export default function BurgerConstructorBottomElement(props) {
 
     return (
         <div>
-            <ConstructorElement text={props.name} thumbnail={props.image_mobile} price={props.price}
+            <ConstructorElement text={props.name + ' (низ)'} thumbnail={props.image_mobile} price={props.price}
                                 type={"bottom"} isLocked="true" extraClass={styles.element}/>
         </div>
     );

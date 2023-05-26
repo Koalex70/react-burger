@@ -6,30 +6,35 @@ import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import {useDispatch, useSelector} from "react-redux";
 import {DELETE_ORDER_DETAILS, postOrderDetails} from "../../services/actions/order-details";
+import {useModal} from "../../hooks/use-modal";
 
 export default function ButtonWithPrice({price}) {
 
     const dispatch = useDispatch();
 
     const burgerConstructor = useSelector(state => state.burgerConstructor);
-    const orderDetails = useSelector(state => state.orderDetails.orderDetails);
+    const {isModalOpen, openModal, closeModal} = useModal();
 
     const handleOpenModal = () => {
 
-        if (!burgerConstructor.bun && !burgerConstructor.ingredients) return;
+        if (!burgerConstructor.bun || !burgerConstructor.ingredients) return;
 
         dispatch(postOrderDetails(burgerConstructor));
+
+        openModal();
     }
 
     const handleCloseModal = () => {
         dispatch({
             type: DELETE_ORDER_DETAILS
         })
+
+        closeModal();
     }
 
     const modal = (
-        <Modal show={orderDetails} onClose={handleCloseModal}>
-            <OrderDetails />
+        <Modal show={isModalOpen} onClose={handleCloseModal}>
+            <OrderDetails/>
         </Modal>
     );
 
@@ -44,7 +49,7 @@ export default function ButtonWithPrice({price}) {
                     Оформить заказ
                 </Button>
             </div>
-            {orderDetails && modal}
+            {isModalOpen && modal}
         </>
     )
 }
