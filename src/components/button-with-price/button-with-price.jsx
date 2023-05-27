@@ -4,21 +4,36 @@ import styles from "./button-with-price.module.css";
 import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
+import {useDispatch, useSelector} from "react-redux";
+import {DELETE_ORDER_DETAILS, postOrderDetails} from "../../services/actions/order-details";
+import {useModal} from "../../hooks/use-modal";
 
-export default function ButtonWithPrice(props) {
+export default function ButtonWithPrice({price}) {
 
-    const [visible, setVisible] = React.useState(false);
+    const dispatch = useDispatch();
+
+    const burgerConstructor = useSelector(state => state.burgerConstructor);
+    const {isModalOpen, openModal, closeModal} = useModal();
 
     const handleOpenModal = () => {
-        setVisible(true);
+
+        if (!burgerConstructor.bun || !burgerConstructor.ingredients) return;
+
+        dispatch(postOrderDetails(burgerConstructor));
+
+        openModal();
     }
 
     const handleCloseModal = () => {
-        setVisible(false);
+        dispatch({
+            type: DELETE_ORDER_DETAILS
+        })
+
+        closeModal();
     }
 
     const modal = (
-        <Modal show={visible} onClose={handleCloseModal}>
+        <Modal show={isModalOpen} onClose={handleCloseModal}>
             <OrderDetails/>
         </Modal>
     );
@@ -26,7 +41,7 @@ export default function ButtonWithPrice(props) {
     return (
         <>
             <div className={styles.container}>
-                <span className={styles.price}>{props.price}</span>
+                <span className={styles.price}>{price}</span>
                 <div className={styles.currency}>
                     <CurrencyIcon type={"primary"}/>
                 </div>
@@ -34,11 +49,11 @@ export default function ButtonWithPrice(props) {
                     Оформить заказ
                 </Button>
             </div>
-            {visible && modal}
+            {isModalOpen && modal}
         </>
     )
 }
 
 ButtonWithPrice.propTypes = {
-    price: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired
 }

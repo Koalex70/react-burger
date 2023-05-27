@@ -1,10 +1,14 @@
 import PropTypes from "prop-types";
 
-export const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
+export const API_URL = 'https://norma.nomoreparties.space/api/';
+export const API_BURGER_INGREDIENTS_ENDPOINT = 'ingredients';
+export const API_BURGER_ORDERS_ENDPOINT = 'orders';
 
 export const BUN = 'bun';
 export const SAUCE = 'sauce';
 export const MAIN = 'main';
+
+export  const BUN_COUNT = 2;
 
 export const MODAL_ROOT = document.getElementById("react-modals");
 export const ECS_CODE = 27;

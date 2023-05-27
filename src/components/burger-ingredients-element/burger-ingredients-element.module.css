@@ -23,10 +23,3 @@
 .name {
     text-align: center;
 }
-
-.counter {
-    position: absolute;
-    z-index: 1000;
-    right: 0;
-    top: 0;
-}
