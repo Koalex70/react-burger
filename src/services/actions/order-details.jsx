@@ -1,5 +1,5 @@
 import {API_BURGER_ORDERS_ENDPOINT} from "../../constants/constants";
-import {request} from "../../utils/api";
+import {requestWithRefresh} from "../../utils/api";
 import {SET_BURGER_CONSTRUCTOR_INITIAL_STATE} from "./burger-constructor";
 import {SET_BURGER_INGREDIENTS_COUNT_ZERO} from "./burger-ingredients";
 
@@ -29,10 +29,11 @@ export function postOrderDetails(burgerData) {
         dispatch({
             type: POST_ORDER_DETAILS_REQUEST
         });
-        request(API_BURGER_ORDERS_ENDPOINT, {
+        requestWithRefresh(API_BURGER_ORDERS_ENDPOINT, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': 'application/json;charset=utf-8',
+                Authorization: localStorage.getItem('token')
             },
             body: JSON.stringify(parseIngredientsIds(burgerData))
         }).then(data => {
@@ -41,7 +42,7 @@ export function postOrderDetails(burgerData) {
                 details: {name: data.name, number: data.order.number}
             });
             dispatch({
-               type: SET_BURGER_CONSTRUCTOR_INITIAL_STATE
+                type: SET_BURGER_CONSTRUCTOR_INITIAL_STATE
             });
             dispatch({
                 type: SET_BURGER_INGREDIENTS_COUNT_ZERO

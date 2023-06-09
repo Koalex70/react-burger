@@ -1,17 +1,14 @@
 import React from "react";
 
-import AppHeader from "../app-header/app-header";
-import BurgerConstructor from "../burger-constructor/burger-constructor";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import styles from "./app.module.css";
+import styles from "./burger-constructor-page.module.css";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
+import BurgerIngredients from "../../components/burger-ingredients/burger-ingredients";
+import BurgerConstructor from "../../components/burger-constructor/burger-constructor";
 
-export default function App() {
-
+const BurgerConstructorPage = () => {
     return (
         <div className={styles.wrapper}>
-            <AppHeader/>
             <main>
                 <section>
                     <h1 className="text text_type_main-large">Соберите бургер</h1>
@@ -26,3 +23,5 @@ export default function App() {
         </div>
     )
 }
+
+export default BurgerConstructorPage;

@@ -18,10 +18,10 @@ export default function Modal(props) {
         window.addEventListener('keydown', onKeyPressHandler);
         return () => window.removeEventListener('keydown', onKeyPressHandler)
     }, [props]);
-
-    if (!props.show) {
-        return null;
-    }
+    //
+    // if (!props.show) {
+    //     return null;
+    // }
 
     return createPortal((
         <>

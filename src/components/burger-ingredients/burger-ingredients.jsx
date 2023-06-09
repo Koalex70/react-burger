@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 
@@ -6,8 +6,7 @@ import styles from "./burger-ingredients.module.css";
 import BurgerIngredientsList from "../burger-ingredients-list/burger-ingredients-list";
 import {BUN, SAUCE, MAIN} from "../../constants/constants";
 
-import {useDispatch, useSelector} from "react-redux";
-import {getBurgerIngredients} from "../../services/actions/burger-ingredients";
+import {useSelector} from "react-redux";
 import classNames from "classnames";
 
 export default function BurgerIngredients() {
@@ -18,16 +17,10 @@ export default function BurgerIngredients() {
     const saucesRef = useRef(null);
     const mainsRef = useRef(null);
 
-    const dispatch = useDispatch();
-
     const {
         burgerIngredientsRequest,
         burgerIngredientsFailed,
     } = useSelector(state => state.burgerIngredients);
-
-    useEffect(() => {
-        dispatch(getBurgerIngredients());
-    }, [dispatch]);
 
     if (burgerIngredientsRequest) {
         return <p>Загрузка...</p>
@@ -39,7 +32,7 @@ export default function BurgerIngredients() {
         const listTop = event.currentTarget.scrollTop;
 
         const buns = bunsRef.current?.getBoundingClientRect();
-        const sauces =  saucesRef.current?.getBoundingClientRect();
+        const sauces = saucesRef.current?.getBoundingClientRect();
         const mains = mainsRef.current?.getBoundingClientRect();
 
         const bunsMiddleY = (buns.bottom - buns.top) / 2;
