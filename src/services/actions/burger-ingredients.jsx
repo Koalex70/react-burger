@@ -31,3 +31,7 @@ export function getBurgerIngredients() {
     }
 }
 
+export function getBurgerIngredientsState(state) {
+    return state.burgerIngredients;
+}
+

@@ -9,12 +9,13 @@ import {DELETE_ORDER_DETAILS, postOrderDetails} from "../../services/actions/ord
 import {useModal} from "../../hooks/use-modal";
 import {useNavigate} from "react-router-dom";
 import {LOGIN_PATH} from "../../constants/constants";
+import {getBurgerConstructorState} from "../../services/actions/burger-constructor";
 
 export default function ButtonWithPrice({price}) {
 
     const dispatch = useDispatch();
 
-    const burgerConstructor = useSelector(state => state.burgerConstructor);
+    const burgerConstructor = useSelector(getBurgerConstructorState);
     const {isModalOpen, openModal, closeModal} = useModal();
 
     const navigate = useNavigate();

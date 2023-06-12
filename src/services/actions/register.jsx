@@ -32,3 +32,7 @@ export const postRegister = (userData) => {
             });
     }
 }
+
+export function getRegisterState(state) {
+    return state.register;
+}

@@ -31,3 +31,7 @@ export const postResetPassword = (userData) => {
             })
     }
 }
+
+export function getResetPasswordState (state) {
+    return state.resetPassword;
+}

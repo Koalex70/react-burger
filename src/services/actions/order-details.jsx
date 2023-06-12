@@ -55,3 +55,7 @@ export function postOrderDetails(burgerData) {
         })
     }
 }
+
+export function getOrderDetailsState (state) {
+    return state.orderDetails;
+}

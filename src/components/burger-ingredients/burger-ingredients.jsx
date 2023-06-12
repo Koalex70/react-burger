@@ -8,6 +8,7 @@ import {BUN, SAUCE, MAIN} from "../../constants/constants";
 
 import {useSelector} from "react-redux";
 import classNames from "classnames";
+import {getBurgerIngredientsState} from "../../services/actions/burger-ingredients";
 
 export default function BurgerIngredients() {
     const [current, setCurrent] = useState(BUN);
@@ -20,7 +21,7 @@ export default function BurgerIngredients() {
     const {
         burgerIngredientsRequest,
         burgerIngredientsFailed,
-    } = useSelector(state => state.burgerIngredients);
+    } = useSelector(getBurgerIngredientsState);
 
     if (burgerIngredientsRequest) {
         return <p>Загрузка...</p>

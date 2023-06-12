@@ -5,10 +5,12 @@ import classNames from "classnames";
 import PropTypes from 'prop-types';
 import {BUN, MAIN, SAUCE} from "../../constants/constants";
 import {useSelector} from "react-redux";
+import {getBurgerIngredientsState} from "../../services/actions/burger-ingredients";
 
 const BurgerIngredientsList = forwardRef(({title, filter}, ref) => {
 
-    const ingredients = useSelector(state => state.burgerIngredients.burgerIngredients?.filter(ingredient => ingredient.type === filter));
+    const {burgerIngredients} = useSelector(getBurgerIngredientsState);
+    const ingredients = burgerIngredients?.filter(ingredient => ingredient.type === filter);
 
     return (
         <div className={styles.container} ref={ref}>

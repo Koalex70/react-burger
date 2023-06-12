@@ -32,3 +32,7 @@ export const postLogin = (userData) => {
             })
     }
 }
+
+export function getLoginState (state) {
+    return state.login;
+}

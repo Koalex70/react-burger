@@ -2,12 +2,13 @@ import React from "react";
 import styles from './ingredient-details.module.css';
 import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
+import {getBurgerIngredientsState} from "../../services/actions/burger-ingredients";
 
 export default function IngredientDetails() {
 
     const {id} = useParams();
-    const details = useSelector(state => state.burgerIngredients.burgerIngredients?.find(ingredient => ingredient._id === id));
-
+    const {burgerIngredients} = useSelector(getBurgerIngredientsState);
+    const details = burgerIngredients?.find(ingredient => ingredient._id === id);
     return (
         <div className={styles.container}>
             <img src={details?.image_large} alt={details?.name}/>

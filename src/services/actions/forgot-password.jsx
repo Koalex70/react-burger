@@ -31,3 +31,7 @@ export const postForgotPassword = (email) => {
             })
     }
 }
+
+export function getForgotPasswordState (state) {
+    return state.forgotPassword;
+}

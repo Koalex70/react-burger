@@ -63,3 +63,7 @@ export function updateUserData(userData) {
             });
     }
 }
+
+export function getUserDataState(state) {
+    return state.userData;
+}
