@@ -23,11 +23,15 @@ export function getBurgerIngredients() {
                 })
             })
             .catch(err => {
+                console.log(err);
                 dispatch({
                     type: GET_BURGER_INGREDIENTS_FAILED
                 });
-                console.log(err);
             })
     }
+}
+
+export function getBurgerIngredientsState(state) {
+    return state.burgerIngredients;
 }
 

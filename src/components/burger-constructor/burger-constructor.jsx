@@ -8,7 +8,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
 import {
     UPDATE_BURGER_CONSTRUCTOR_BUN,
-    ADD_BURGER_CONSTRUCTOR_INGREDIENTS
+    ADD_BURGER_CONSTRUCTOR_INGREDIENTS,
+    getBurgerConstructorState
 } from "../../services/actions/burger-constructor";
 import {BUN, BUN_COUNT} from "../../constants/constants";
 import {ADD_BURGER_INGREDIENT_COUNT, REMOVE_BURGER_INGREDIENT_COUNT} from "../../services/actions/burger-ingredients";
@@ -16,8 +17,7 @@ import {v4 as uuidv4} from 'uuid';
 
 export default function BurgerConstructor() {
 
-    const bun = useSelector(state => state.burgerConstructor.bun);
-    const ingredients = useSelector(state => state.burgerConstructor.ingredients);
+    const {bun, ingredients} = useSelector(getBurgerConstructorState);
 
     const dispatch = useDispatch();
 

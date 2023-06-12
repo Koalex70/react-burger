@@ -1,0 +1,35 @@
+.tabs {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tab {
+    text-align: left;
+    width: 100%;
+    height: 64px;
+    position: relative;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.tab p {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.tab:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.active {
+    color: white;
+}
+
+.info {
+    width: 100%;
+    color: #8585AD;
+}

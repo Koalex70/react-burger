@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./order-details.module.css";
 import ClassNames from "classnames";
 import {useSelector} from "react-redux";
+import {getOrderDetailsState} from "../../services/actions/order-details";
 
 export default function OrderDetails() {
 
@@ -9,7 +10,7 @@ export default function OrderDetails() {
         orderDetails,
         orderDetailsRequest,
         orderDetailsFailed,
-    } = useSelector(state => state.orderDetails);
+    } = useSelector(getOrderDetailsState);
 
     if (orderDetailsRequest) {
         return <p>Загрузка...</p>
