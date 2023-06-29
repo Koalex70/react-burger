@@ -18,7 +18,7 @@ export function getBurgerIngredients() {
                 dispatch({
                     type: GET_BURGER_INGREDIENTS_SUCCESS,
                     ingredients: data.data.map((ingredient) => {
-                        return {...ingredient, count: 0}
+                        return {...ingredient, count: 0, id: ingredient._id}
                     })
                 })
             })

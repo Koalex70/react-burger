@@ -14,11 +14,11 @@ function parseIngredientsIds(burgerData) {
 
     let ids = {ingredients: []};
 
-    ids.ingredients.push(burgerData.bun._id);
-    ids.ingredients.push(burgerData.bun._id);
+    ids.ingredients.push(burgerData.bun.id);
+    ids.ingredients.push(burgerData.bun.id);
 
     burgerData.ingredients.forEach(ingredient => {
-        ids.ingredients.push(ingredient._id);
+        ids.ingredients.push(ingredient.id);
     });
 
     return ids;
