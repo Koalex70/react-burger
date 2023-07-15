@@ -6,9 +6,9 @@ import styles from "./burger-ingredients.module.css";
 import BurgerIngredientsList from "../burger-ingredients-list/burger-ingredients-list";
 import {BUN, SAUCE, MAIN} from "../../constants/constants";
 
-import {useSelector} from "react-redux";
 import classNames from "classnames";
 import {getBurgerIngredientsState} from "../../services/actions/burger-ingredients";
+import {useSelector} from "../../services/hooks/use-selector";
 
 const BurgerIngredients: FC = () => {
     const [current, setCurrent] = useState(BUN);

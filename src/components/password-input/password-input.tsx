@@ -1,9 +1,8 @@
 import React, {FC, useState} from "react";
 import {Input} from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import {TPasswordInput} from "../../services/types";
 
-const PasswordInput:FC<TPasswordInput> = ({placeholder, value, onChange}) => {
+const PasswordInput: FC<TPasswordInput> = ({placeholder, value, onChange}) => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (

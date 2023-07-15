@@ -49,6 +49,10 @@ nav {
     text-decoration: none;
 }
 
+.link:hover {
+    cursor: pointer;
+}
+
 .link:visited {
     color: white;
 }

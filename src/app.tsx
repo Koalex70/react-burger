@@ -8,21 +8,31 @@ import {
     ForgotPasswordPage,
     ResetPasswordPage,
     ProfilePage,
-    IngredientDetailsPage
+    IngredientDetailsPage,
+    FeedPage,
+    FeedItemPage,
+    OrdersHistoryPage
 } from './pages';
 import {
     LOGIN_PATH,
     REGISTER_PATH,
     FORGOT_PATH,
     RESET_PASSWORD_PATH,
-    PROFILE_PATH, BURGER_CONSTRUCTOR_PATH, INGREDIENT_PATH
+    PROFILE_PATH,
+    BURGER_CONSTRUCTOR_PATH,
+    INGREDIENT_PATH,
+    FEED_PATH,
+    FEED_ELEMENT_PATH, PROFILE_ORDERS_PATH, PROFILE_ORDERS_ELEMENT_PATH
 } from "./constants/constants";
 import AppHeader from "./components/app-header/app-header";
 import {ProtectedRouteElement} from "./components/protected-route-element/protected-route-element";
-import {useDispatch} from "react-redux";
 import {getBurgerIngredients} from "./services/actions/burger-ingredients";
 import Modal from "./components/modal/modal";
 import IngredientDetails from "./components/ingredient-details/ingredient-details";
+import {useDispatch} from "./services/hooks/use-dispatch";
+import OrdersHistoryItemPage from "./pages/orders-histore-item/orders-histore-item";
+import FeedItemNoAuth from "./components/feed-item-no-auth/feed-item-no-auth";
+import FeedItemAuth from "./components/feed-item-auth/feed-item-auth";
 
 export default function App() {
     const dispatch = useDispatch();
@@ -35,7 +45,7 @@ export default function App() {
     }
 
     useEffect(() => {
-        dispatch(getBurgerIngredients() as any);
+        dispatch(getBurgerIngredients());
     }, [dispatch]);
 
     return (
@@ -53,7 +63,13 @@ export default function App() {
                        element={<ProtectedRouteElement isAuthRequire={false} element={<ResetPasswordPage/>}/>}/>
                 <Route path={PROFILE_PATH}
                        element={<ProtectedRouteElement isAuthRequire={true} element={<ProfilePage/>}/>}/>
+                <Route path={PROFILE_ORDERS_PATH}
+                       element={<ProtectedRouteElement isAuthRequire={true} element={<OrdersHistoryPage/>}/>}/>
+                <Route path={PROFILE_ORDERS_ELEMENT_PATH}
+                       element={<ProtectedRouteElement isAuthRequire={true} element={<OrdersHistoryItemPage/>}/>}/>
                 <Route path={INGREDIENT_PATH} element={<IngredientDetailsPage/>}/>
+                <Route path={FEED_PATH} element={<FeedPage/>}/>
+                <Route path={FEED_ELEMENT_PATH} element={<FeedItemPage/>}/>
 
                 <Route path="*" element={<NotFound404Page/>}/>
             </Routes>
@@ -63,6 +79,14 @@ export default function App() {
                     <Route
                         path={INGREDIENT_PATH}
                         element={<Modal onClose={handleCloseModal}><IngredientDetails/></Modal>}
+                    />
+                    <Route
+                        path={FEED_ELEMENT_PATH}
+                        element={<Modal onClose={handleCloseModal}><FeedItemNoAuth/></Modal>}
+                    />
+                    <Route
+                        path={PROFILE_ORDERS_ELEMENT_PATH}
+                        element={<Modal onClose={handleCloseModal}><FeedItemAuth/></Modal>}
                     />
                 </Routes>
             }

@@ -1,0 +1,14 @@
+.wrapper {
+    max-width: 1280px;
+    margin: 120px auto 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.left {
+    width: 30%;
+}
+
+.right {
+    width: 70%;
+}

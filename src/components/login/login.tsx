@@ -3,8 +3,9 @@ import {EmailInput, Button, Input} from "@ya.praktikum/react-developer-burger-ui
 import styles from './login.module.css';
 import {FORGOT_PATH, REGISTER_PATH} from "../../constants/constants";
 import {useLocation, useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
 import {getLoginState, postLogin, SET_LOGIN_INITIAL_STATE} from "../../services/actions/login";
+import {useDispatch} from "../../services/hooks/use-dispatch";
+import {useSelector} from "../../services/hooks/use-selector";
 
 const Login: FC = () => {
 
@@ -13,7 +14,7 @@ const Login: FC = () => {
     const [isVisible, setIsVisible] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
-    const dispatch = useDispatch() as any;
+    const dispatch = useDispatch();
     const {loginSuccess} = useSelector(getLoginState);
 
     const from = location.state?.from || "/";
@@ -21,7 +22,7 @@ const Login: FC = () => {
     const submit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
-        let userData = {
+        const userData = {
             'email': email,
             'password': password
         }

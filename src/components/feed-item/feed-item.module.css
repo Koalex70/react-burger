@@ -1,0 +1,89 @@
+.wrapper {
+    margin: 16px;
+}
+
+.number {
+    text-align: center;
+}
+
+.statusComplete {
+    color: #00CCCC;
+}
+
+.statusCreated {
+    color: white;
+}
+
+.statusInWork {
+    color: white;
+}
+
+.statusDenied {
+    color: red;
+}
+
+.items {
+    max-height: 366px;
+    overflow-y: auto;
+}
+
+.items::-webkit-scrollbar {
+    width: 8px;
+    background-color: #2F2F37;
+}
+
+.items::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    background: linear-gradient(63.18deg, #801AB3 0%, #4C4CFF 100%);
+}
+
+.black {
+    background: black;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.icon img {
+    width: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.name {
+    margin-left: 16px;
+    min-width: 320px;
+    max-width: 320px;
+}
+
+.price {
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

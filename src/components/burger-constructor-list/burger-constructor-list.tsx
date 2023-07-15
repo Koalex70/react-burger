@@ -1,22 +1,17 @@
 import React, {FC, useCallback} from "react";
 import BurgerConstructorElement from "../burger-constructor-element/burger-constructor-element";
 import styles from "./burger-constructor-list.module.css";
-import {useDispatch} from "react-redux";
+
 import {SET_BURGER_CONSTRUCTOR_INGREDIENTS} from "../../services/actions/burger-constructor";
+import {useDispatch} from "../../services/hooks/use-dispatch";
+import {TBurgerConstructorElementIngredient} from "../../services/types";
 
-type TBurgerConstructorElementIngredient = {
-    id: string;
-    uuid: string;
-    name: string;
-    image_mobile: string;
-    price: number;
-}
 
-type test = {
+type TBurgerConstructorList = {
     ingredients: Array<TBurgerConstructorElementIngredient>
 }
 
- const BurgerConstructorList:FC<test> = ({ingredients}) => {
+ const BurgerConstructorList:FC<TBurgerConstructorList> = ({ingredients}) => {
 
     const dispatch = useDispatch();
 

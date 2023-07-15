@@ -2,7 +2,7 @@ import React, {FC, useState} from "react";
 import {Logo, BurgerIcon, ListIcon, ProfileIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./app-header.module.css";
 import {Link} from "react-router-dom";
-import {BURGER_CONSTRUCTOR_PATH, PROFILE_PATH} from "../../constants/constants";
+import {BURGER_CONSTRUCTOR_PATH, FEED_PATH, PROFILE_PATH} from "../../constants/constants";
 
 const AppHeader: FC = () => {
 
@@ -22,7 +22,7 @@ const AppHeader: FC = () => {
                         </Link>
                     </div>
                     <div className={styles.orderList}>
-                        <Link to={BURGER_CONSTRUCTOR_PATH} className={styles.link} onClick={() => {
+                        <Link to={FEED_PATH} className={styles.link} onClick={() => {
                             setActive('orderList')
                         }}>
                             <ListIcon type={active === 'orderList' ? 'primary' : "secondary"}/>

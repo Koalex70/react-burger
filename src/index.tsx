@@ -3,22 +3,54 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from "./app";
-import {applyMiddleware, compose, createStore} from "redux";
-import thunk from "redux-thunk";
+import {applyMiddleware, createStore} from "redux";
+import thunkMiddleware from 'redux-thunk';
+import {composeWithDevTools} from '@redux-devtools/extension';
 import {rootReducer} from "./services/reducers";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
+import {socketMiddleware} from "./services/middleware/socketMiddleware";
+import {TWSStoreActions} from "./services/types";
+import {
+    WS_CONNECTION_CLOSED, WS_CONNECTION_ERROR,
+    WS_CONNECTION_START,
+    WS_CONNECTION_SUCCESS, WS_GET_MESSAGE,
+    WS_SEND_MESSAGE
+} from "./services/actions/wsActionTypes";
+import {
+    WS_CONNECTION_CLOSED_AUTH, WS_CONNECTION_ERROR_AUTH,
+    WS_CONNECTION_START_AUTH,
+    WS_CONNECTION_SUCCESS_AUTH, WS_GET_MESSAGE_AUTH,
+    WS_SEND_MESSAGE_AUTH
+} from "./services/actions/wsAuthActionTypes";
 
-declare global {
-    interface Window {
-        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-    }
+const wsActions: TWSStoreActions = {
+    wsInit: WS_CONNECTION_START,
+    wsSendMessage: WS_SEND_MESSAGE,
+    onOpen: WS_CONNECTION_SUCCESS,
+    onClose: WS_CONNECTION_CLOSED,
+    onError: WS_CONNECTION_ERROR,
+    onMessage: WS_GET_MESSAGE
+};
+
+const wsAuthActions: TWSStoreActions = {
+    wsInit: WS_CONNECTION_START_AUTH,
+    wsSendMessage: WS_SEND_MESSAGE_AUTH,
+    onOpen: WS_CONNECTION_SUCCESS_AUTH,
+    onClose: WS_CONNECTION_CLOSED_AUTH,
+    onError: WS_CONNECTION_ERROR_AUTH,
+    onMessage: WS_GET_MESSAGE_AUTH
 }
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const enhancer = composeEnhancers(applyMiddleware(thunk));
-
-const store = createStore(rootReducer, enhancer);
+export const store = createStore(
+    rootReducer,
+    composeWithDevTools(
+        applyMiddleware(
+            thunkMiddleware,
+            socketMiddleware('wss://norma.nomoreparties.space/orders/all', wsActions),
+            socketMiddleware('wss://norma.nomoreparties.space/orders', wsAuthActions, true),
+        )
+    )
+);
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement

@@ -3,13 +3,14 @@ import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components"
 import styles from './reset-password.module.css';
 import {LOGIN_PATH} from "../../constants/constants";
 import {useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
 import {
     getResetPasswordState,
     postResetPassword,
     SET_RESET_PASSWORD_INITIAL_STATE
 } from "../../services/actions/reset-password";
 import {SET_FORGOT_PASSWORD_INITIAL_STATE} from "../../services/actions/forgot-password";
+import {useDispatch} from "../../services/hooks/use-dispatch";
+import {useSelector} from "../../services/hooks/use-selector";
 
 const ResetPassword: FC = () => {
 
@@ -17,7 +18,7 @@ const ResetPassword: FC = () => {
     const [password, setPassword] = useState('');
     const [isVisible, setIsVisible] = useState(false);
     const navigate = useNavigate();
-    const dispatch = useDispatch() as any;
+    const dispatch = useDispatch();
     const {resetPasswordSuccess} = useSelector(getResetPasswordState);
 
     const submit = (e: { preventDefault: () => void; }) => {

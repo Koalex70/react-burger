@@ -1,8 +1,8 @@
 import React, {FC} from "react";
 import styles from './ingredient-details.module.css';
-import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {getBurgerIngredientsState} from "../../services/actions/burger-ingredients";
+import {useSelector} from "../../services/hooks/use-selector";
 
 const IngredientDetails: FC = () => {
 
