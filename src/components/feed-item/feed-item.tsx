@@ -78,8 +78,8 @@ const FeedItem:FC<TFeedItem> = ({message}) => {
                 Состав:
             </div>
             <div className={classNames(['mb-10', styles.items])}>
-                {ingredients.map(ingredient => {
-                    return <div className={classNames([styles.item, 'mb-6'])}>
+                {ingredients.map((ingredient, index) => {
+                    return <div key={index} className={classNames([styles.item, 'mb-6'])}>
                         <div className={styles.icon}>
                             <div className={styles.black}>
                                 <img src={ingredient?.image_mobile} alt="icon"/>

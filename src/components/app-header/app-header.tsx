@@ -32,7 +32,11 @@ const AppHeader: FC = () => {
                     </div>
                 </div>
                 <div className={styles.logo}>
-                    <Logo/>
+                    <Link to={BURGER_CONSTRUCTOR_PATH} className={styles.link} onClick={() => {
+                        setActive('constructor')
+                    }}>
+                        <Logo/>
+                    </Link>
                 </div>
                 <div className={styles.personalAccount}>
                     <Link to={PROFILE_PATH} className={styles.link} onClick={() => {
