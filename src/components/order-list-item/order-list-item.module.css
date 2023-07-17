@@ -1,0 +1,47 @@
+.wrapper {
+    max-width: 100%;
+    background: #1C1C21;
+    border-radius: 40px;
+    padding: 24px;
+    margin-bottom: 24px;
+    margin-right: 8px;
+    border: 1px solid #1C1C21;
+    transition: all 0.3s ease;
+}
+
+.wrapper:hover {
+    cursor: pointer;
+    border: 1px solid #3C39EC;
+}
+
+.topLine {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottomLine {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+}
+
+.statusComplete {
+    color: #00CCCC;
+}
+
+.statusCreated {
+    color: white;
+}
+
+.statusInWork {
+    color: white;
+}
+
+.statusDenied {
+    color: red;
+}

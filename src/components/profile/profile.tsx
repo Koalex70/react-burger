@@ -1,11 +1,12 @@
 import React, {FC, useEffect, useState} from "react";
 import styles from './profile.module.css'
-import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch, useSelector} from "react-redux";
+import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {getUserData, getUserDataState, updateUserData} from "../../services/actions/user-data";
+import {useDispatch} from "../../services/hooks/use-dispatch";
+import {useSelector} from "../../services/hooks/use-selector";
 
-const Profile:FC = () => {
-    const dispatch = useDispatch() as any;
+const Profile: FC = () => {
+    const dispatch = useDispatch();
     const {userDataRequest, userDataFailed, userDataSuccess, userData} = useSelector(getUserDataState);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -18,6 +19,8 @@ const Profile:FC = () => {
     });
 
     const setInitialState = () => {
+        if (!userData) return;
+
         setName(userData.name);
         setEmail(userData.email);
         setPassword('******');
@@ -32,6 +35,8 @@ const Profile:FC = () => {
         setDisabledElements({...disabledElements, name: !disabledElements.name})
 
         if (!disabledElements.name) {
+            if (!userData) return;
+
             setName(userData.name);
         }
     }
@@ -40,6 +45,8 @@ const Profile:FC = () => {
         setDisabledElements({...disabledElements, email: !disabledElements.email})
 
         if (!disabledElements.email) {
+            if (!userData) return;
+
             setEmail(userData.email);
         }
     }
@@ -60,6 +67,9 @@ const Profile:FC = () => {
         dispatch(getUserData());
 
         if (userDataSuccess) {
+
+            if (!userData) return;
+
             setName(userData.name);
             setEmail(userData.email);
         }
@@ -74,11 +84,11 @@ const Profile:FC = () => {
             password?: string;
         } = {};
 
-        if (!disabledElements.name && name !== userData.name) {
+        if (!disabledElements.name && name !== userData?.name) {
             user.name = name;
         }
 
-        if (!disabledElements.email && email !== userData.email) {
+        if (!disabledElements.email && email !== userData?.email) {
             user.email = email;
         }
 
@@ -95,7 +105,7 @@ const Profile:FC = () => {
     }
 
     return (
-        <div className={styles.wrapper} >
+        <div className={styles.wrapper}>
             <form onSubmit={submit}>
                 <Input
                     placeholder={'Имя'}

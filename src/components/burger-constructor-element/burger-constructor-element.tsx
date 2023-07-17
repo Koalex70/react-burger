@@ -2,19 +2,20 @@ import React, {FC, useRef} from "react";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "../burger-constructor-element/burger-constructor-element.module.css";
 
-import {useDispatch} from "react-redux";
-import {DELETE_BURGER_CONSTRUCTOR_INGREDIENTS} from "../../services/actions/burger-constructor";
+import {DELETE_BURGER_CONSTRUCTOR_INGREDIENT} from "../../services/actions/burger-constructor";
 import {REMOVE_BURGER_INGREDIENT_COUNT} from "../../services/actions/burger-ingredients";
 import {DropTargetMonitor, useDrag, useDrop} from "react-dnd";
 import {TBurgerConstructorElement} from "../../services/types";
- const BurgerConstructorElement:FC<TBurgerConstructorElement> = ({ ingredient, index, moveCard }) => {
+import {useDispatch} from "../../services/hooks/use-dispatch";
+
+const BurgerConstructorElement: FC<TBurgerConstructorElement> = ({ingredient, index, moveCard}) => {
 
     const dispatch = useDispatch();
     const ref = useRef<HTMLDivElement>(null);
 
     const handleClose = () => {
         dispatch({
-            type: DELETE_BURGER_CONSTRUCTOR_INGREDIENTS,
+            type: DELETE_BURGER_CONSTRUCTOR_INGREDIENT,
             uuid: ingredient.uuid
         });
 
@@ -24,7 +25,7 @@ import {TBurgerConstructorElement} from "../../services/types";
         })
     }
 
-    const [, drop] = useDrop<{index: number}>({
+    const [, drop] = useDrop<{ index: number }>({
         accept: 'component',
         hover(item, monitor: DropTargetMonitor): void {
             if (!ref.current) {

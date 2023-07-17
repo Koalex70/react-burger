@@ -1,14 +1,14 @@
 import React, {FC} from "react";
 import styles from "./profile-tabs.module.css";
 import classNames from "classnames";
-import {EXIT, LOGIN_PATH, ORDER_HISTORY, PROFILE} from "../../constants/constants";
-import {useDispatch} from "react-redux";
+import {EXIT, LOGIN_PATH, ORDER_HISTORY, PROFILE, PROFILE_ORDERS_PATH, PROFILE_PATH} from "../../constants/constants";
 import {logout} from "../../services/actions/logout";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {TProfileTabs} from "../../services/types";
+import {useDispatch} from "../../services/hooks/use-dispatch";
 
 const ProfileTabs: FC<TProfileTabs> = ({activeTab}) => {
-    const dispatch = useDispatch() as any;
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const onCLick = () => {
@@ -18,14 +18,18 @@ const ProfileTabs: FC<TProfileTabs> = ({activeTab}) => {
 
     return (
         <div className={styles.tabs}>
-            <div
-                className={classNames([styles.tab, 'text text_type_main-medium text_color_inactive', activeTab === PROFILE ? styles.active : ''])}>
-                <p>{PROFILE}</p>
-            </div>
-            <div
-                className={classNames([styles.tab, 'text text_type_main-medium text_color_inactive', activeTab === ORDER_HISTORY ? styles.active : ''])}>
-                <p>{ORDER_HISTORY}</p>
-            </div>
+            <Link to={PROFILE_PATH} className={styles.tab}>
+                <div
+                    className={classNames([styles.tab, 'text text_type_main-medium text_color_inactive', activeTab === PROFILE ? styles.active : ''])}>
+                    <p>{PROFILE}</p>
+                </div>
+            </Link>
+            <Link to={PROFILE_ORDERS_PATH} className={styles.tab}>
+                <div
+                    className={classNames([styles.tab, 'text text_type_main-medium text_color_inactive', activeTab === ORDER_HISTORY ? styles.active : ''])}>
+                    <p>{ORDER_HISTORY}</p>
+                </div>
+            </Link>
             <div
                 className={classNames([styles.tab, 'text text_type_main-medium text_color_inactive'])}
                 onClick={onCLick}>

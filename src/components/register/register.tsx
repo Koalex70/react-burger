@@ -3,8 +3,9 @@ import {useNavigate} from "react-router-dom";
 import styles from "./register.module.css";
 import {Button, EmailInput, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {LOGIN_PATH} from "../../constants/constants";
-import {useDispatch, useSelector} from "react-redux";
 import {getRegisterState, postRegister, SET_REGISTER_INITIAL_STATE} from "../../services/actions/register";
+import {useDispatch} from "../../services/hooks/use-dispatch";
+import {useSelector} from "../../services/hooks/use-selector";
 
 const Register: FC = () => {
     const [name, setName] = useState('');
@@ -12,7 +13,7 @@ const Register: FC = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const dispatch = useDispatch() as any;
+    const dispatch = useDispatch();
     const {registerSuccess} = useSelector(getRegisterState);
 
     const submit = (e: { preventDefault: () => void; }) => {

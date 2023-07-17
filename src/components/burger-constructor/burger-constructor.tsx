@@ -4,16 +4,18 @@ import BurgerConstructorBottomElement from "../burger-constructor-bottom-element
 import ButtonWithPrice from "../button-with-price/button-with-price";
 import styles from "./burger-constructor.module.css";
 import BurgerConstructorList from "../burger-constructor-list/burger-constructor-list";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "../../services/hooks/use-dispatch";
+import {useSelector} from "../../services/hooks/use-selector";
 import {useDrop} from "react-dnd";
 import {
     UPDATE_BURGER_CONSTRUCTOR_BUN,
-    ADD_BURGER_CONSTRUCTOR_INGREDIENTS,
+    ADD_BURGER_CONSTRUCTOR_INGREDIENT,
     getBurgerConstructorState
 } from "../../services/actions/burger-constructor";
 import {BUN, BUN_COUNT} from "../../constants/constants";
 import {ADD_BURGER_INGREDIENT_COUNT, REMOVE_BURGER_INGREDIENT_COUNT} from "../../services/actions/burger-ingredients";
 import {v4 as uuidv4} from 'uuid';
+import {TBurgerConstructorBun} from "../../services/types";
 
 interface IPrice {
     price: number;
@@ -34,15 +36,7 @@ const BurgerConstructor:FC = () => {
 
     const [, dropTargetIngredient] = useDrop({
         accept: "ingredient",
-        drop(item:{
-            id: string;
-            image: string;
-            name: string;
-            type: string;
-            price: number;
-            count: number;
-            image_mobile: string;
-        }) {
+        drop(item:TBurgerConstructorBun) {
             if (item.type === BUN) {
                 if (bun) {
                     dispatch({
@@ -56,8 +50,8 @@ const BurgerConstructor:FC = () => {
                 });
             } else {
                 dispatch({
-                    type: ADD_BURGER_CONSTRUCTOR_INGREDIENTS,
-                    ingredients: {...item, uuid: uuidv4()}
+                    type: ADD_BURGER_CONSTRUCTOR_INGREDIENT,
+                    ingredient: {...item, uuid: uuidv4()}
                 });
             }
 

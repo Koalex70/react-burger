@@ -5,25 +5,26 @@ import {
     REFRESH_TOKEN
 } from "../constants/constants";
 import {setTokens} from "./localStorage";
+import {TTokens} from "../services/types";
 
-const checkResponse = (res: Response) => {
+function checkResponse(res: Response) {
     return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
-const checkSuccess = (res: { readonly success: boolean }) => {
+function checkSuccess<T>(res: { success: boolean; } & T): Promise<T> {
     if (res && res.success) {
-        return res;
+        return Promise.resolve(res);
     }
     return Promise.reject(`Ответ не success: ${res}`);
 };
 
-export const request = (endpoint: string, options: RequestInit | undefined) => {
+export function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
     return fetch(`${API_URL}${endpoint}`, options)
         .then(checkResponse)
-        .then(checkSuccess);
+        .then(checkSuccess<T>);
 };
 
-export const refreshTokenRequest = () => {
+export function refreshTokenRequest(): Promise<TTokens> {
     return request(API_REFRESH_TOKEN_ENDPOINT, {
         method: 'POST',
         headers: {
@@ -35,17 +36,24 @@ export const refreshTokenRequest = () => {
     });
 }
 
-export const requestWithRefresh = async (endpoint: string, options: RequestInit = {}) => {
-    return request(endpoint, options)
-        .catch(async err => {
+export function requestWithRefresh<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+    return request<T>(endpoint, options)
+        .catch(err => {
             if (err.message === JWT_EXPIRED_ERROR) {
-                const {accessToken, refreshToken} = await refreshTokenRequest() as any;
-                setTokens(accessToken, refreshToken);
+                return refreshTokenRequest()
+                    .then(({accessToken, refreshToken}) => {
+                        setTokens(accessToken, refreshToken);
 
-                if (options.headers)
-                    options.headers = {...options.headers, Authorization: accessToken};
+                        if (options.headers) {
+                            const headers = new Headers();
+                            headers.set('Content-Type', 'application/json;charset=utf-8');
+                            headers.set('Authorization', localStorage.getItem('token') as string);
 
-                return request(endpoint, options);
+                            options = {...options, headers: headers};
+                        }
+
+                        return request(endpoint, options);
+                    });
             } else {
                 return Promise.reject(err);
             }

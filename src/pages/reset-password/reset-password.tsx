@@ -1,8 +1,8 @@
 import React, {FC} from "react";
 import ResetPassword from "../../components/reset-password/reset-password";
-import {useSelector} from "react-redux";
 import {Navigate, useLocation} from "react-router-dom";
 import {getForgotPasswordState} from "../../services/actions/forgot-password";
+import {useSelector} from "../../services/hooks/use-selector";
 
 const ResetPasswordPage:FC = () => {
     const {forgotPasswordSuccess} = useSelector(getForgotPasswordState);

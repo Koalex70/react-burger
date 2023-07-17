@@ -6,6 +6,10 @@ import ForgotPasswordPage from "./forgot-password/forgot-password";
 import ResetPasswordPage from "./reset-password/reset-password";
 import ProfilePage from "./profile/profile";
 import {IngredientDetailsPage} from "./ingredient-details/ingredient-details";
+import FeedPage from "./feed/feed";
+import FeedItemPage from "./feed-item/feed-item";
+import OrdersHistoryPage from "./orders-history/orders-history";
+import OrdersHistoryItemPage from "./orders-histore-item/orders-histore-item";
 
 export {
     BurgerConstructorPage,
@@ -16,4 +20,8 @@ export {
     ResetPasswordPage,
     ProfilePage,
     IngredientDetailsPage,
+    FeedPage,
+    FeedItemPage,
+    OrdersHistoryPage,
+    OrdersHistoryItemPage,
 };

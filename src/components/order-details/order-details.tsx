@@ -1,8 +1,8 @@
 import React, {FC} from "react";
 import styles from "./order-details.module.css";
 import ClassNames from "classnames";
-import {useSelector} from "react-redux";
 import {getOrderDetailsState} from "../../services/actions/order-details";
+import {useSelector} from "../../services/hooks/use-selector";
 
 const OrderDetails: FC = () => {
 

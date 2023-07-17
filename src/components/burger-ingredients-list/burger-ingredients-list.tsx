@@ -2,9 +2,9 @@ import React, {forwardRef} from "react";
 import BurgerIngredientsElement from "../burger-ingredients-element/burger-ingredients-element";
 import styles from "./burger-ingredients-list.module.css";
 import classNames from "classnames";
-import {useSelector} from "react-redux";
 import {getBurgerIngredientsState} from "../../services/actions/burger-ingredients";
 import {TBurgerIngredientsList} from "../../services/types";
+import {useSelector} from "../../services/hooks/use-selector";
 
 type IBurgerIngredientsList = {
     title: string;
