@@ -22,7 +22,9 @@ import {
     BURGER_CONSTRUCTOR_PATH,
     INGREDIENT_PATH,
     FEED_PATH,
-    FEED_ELEMENT_PATH, PROFILE_ORDERS_PATH, PROFILE_ORDERS_ELEMENT_PATH
+    FEED_ELEMENT_PATH,
+    PROFILE_ORDERS_PATH,
+    PROFILE_ORDERS_ELEMENT_PATH
 } from "./constants/constants";
 import AppHeader from "./components/app-header/app-header";
 import {ProtectedRouteElement} from "./components/protected-route-element/protected-route-element";

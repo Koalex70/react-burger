@@ -47,3 +47,5 @@ export const resetPasswordReducer = (state = initialState, action: TResetPasswor
             return state;
     }
 }
+
+export default resetPasswordReducer;

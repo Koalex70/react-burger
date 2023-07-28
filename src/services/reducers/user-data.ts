@@ -81,3 +81,5 @@ export const userDataReducer = (state = initialState, action: TUserDataActions):
         }
     }
 }
+
+export default userDataReducer;

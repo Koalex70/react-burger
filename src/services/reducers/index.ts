@@ -7,8 +7,8 @@ import {loginReducer} from "./login";
 import {forgotPasswordReducer} from "./forgot-password";
 import {resetPasswordReducer} from "./reset-password";
 import {userDataReducer} from "./user-data";
-import {wsReducer} from "./rootReducer";
-import {wsAuthReducer} from "./rootAuthReducer";
+import {wsReducer} from "./root-reducer";
+import {wsAuthReducer} from "./root-auth-reducer";
 
 export const rootReducer = combineReducers({
     burgerIngredients: burgerIngredientsReducer,

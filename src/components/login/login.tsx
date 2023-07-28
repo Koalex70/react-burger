@@ -44,7 +44,7 @@ const Login: FC = () => {
         <div className={styles.form}>
             <h3 className="text text_type_main-medium mb-6">Вход</h3>
             <form onSubmit={submit}>
-                <EmailInput value={email} onChange={e => setEmail(e.target.value)} extraClass="mb-6"/>
+                <EmailInput value={email} onChange={e => setEmail(e.target.value)} extraClass="mb-6 cy-login-email-input"/>
                 <Input
                     value={password}
                     onChange={e => setPassword(e.target.value)}
@@ -52,7 +52,7 @@ const Login: FC = () => {
                     type={isVisible ? 'text' : 'password'}
                     icon={isVisible ? 'HideIcon' : 'ShowIcon'}
                     onIconClick={() => setIsVisible(!isVisible)}
-                    extraClass="mb-6"
+                    extraClass="mb-6 cy-login-password-input"
                 />
                 <Button htmlType="submit" type="primary" size="medium" extraClass="mb-20">
                     Войти

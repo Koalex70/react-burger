@@ -51,3 +51,5 @@ export const burgerConstructorReducer = (state = initialState, action: TBurgerCo
         }
     }
 }
+
+export default burgerConstructorReducer;

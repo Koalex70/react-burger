@@ -1,6 +1,10 @@
 import {useDispatch} from "../../services/hooks/use-dispatch";
 import {useSelector} from "../../services/hooks/use-selector";
-import {getWSState, WS_CONNECTION_CLOSED, WS_CONNECTION_START} from "../../services/actions/wsActionTypes";
+import {
+    getWSState,
+    WS_CONNECTION_CLOSED,
+    WS_CONNECTION_START
+} from "../../services/actions/ws-action-types";
 import React, {useEffect} from "react";
 import FeedItem from "../feed-item/feed-item";
 

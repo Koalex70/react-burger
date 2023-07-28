@@ -63,7 +63,7 @@ const BurgerConstructor:FC = () => {
     });
 
     return (
-        <div className={styles.container} ref={dropTargetIngredient}>
+        <div className={styles.container} ref={dropTargetIngredient} data-cy='constructor'>
 
             {
                 bun && <BurgerConstructorTopElement

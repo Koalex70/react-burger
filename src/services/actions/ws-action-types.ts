@@ -1,5 +1,5 @@
 import {TMessage} from "../types";
-import {TWSState} from "../reducers/rootReducer";
+import {TWSState} from "../reducers/root-reducer";
 
 export const WS_CONNECTION_START: 'WS_CONNECTION_START' = 'WS_CONNECTION_START';
 export const WS_CONNECTION_SUCCESS: 'WS_CONNECTION_SUCCESS' = 'WS_CONNECTION_SUCCESS';

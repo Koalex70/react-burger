@@ -14,7 +14,7 @@ type IBurgerConstructorBottomElement = {
 const BurgerConstructorBottomElement: FC<IBurgerConstructorBottomElement> = ({name, image_mobile, price}) => {
 
     return (
-        <div>
+        <div data-cy='constructor-bun-2'>
             <ConstructorElement text={name + ' (низ)'} thumbnail={image_mobile} price={price}
                                 type={"bottom"} isLocked={true} extraClass={styles.element}/>
         </div>

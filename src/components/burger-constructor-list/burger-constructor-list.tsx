@@ -27,7 +27,7 @@ type TBurgerConstructorList = {
     }, [ingredients, dispatch]);
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-cy="constructor-ingredients">
             {ingredients.map((ingredient, index) => {
 
                 return <BurgerConstructorElement

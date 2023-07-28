@@ -1,7 +1,9 @@
 import {
     POST_FORGOT_PASSWORD_REQUEST,
     POST_FORGOT_PASSWORD_SUCCESS,
-    POST_FORGOT_PASSWORD_FAILED, SET_FORGOT_PASSWORD_INITIAL_STATE, TForgotPasswordActions
+    POST_FORGOT_PASSWORD_FAILED,
+    SET_FORGOT_PASSWORD_INITIAL_STATE,
+    TForgotPasswordActions
 } from "../actions/forgot-password";
 
 export type TForgotPasswordState = {
@@ -45,3 +47,5 @@ export const forgotPasswordReducer = (state = initialState, action: TForgotPassw
             return state;
     }
 }
+
+export default forgotPasswordReducer;

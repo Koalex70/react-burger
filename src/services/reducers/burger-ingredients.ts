@@ -75,3 +75,5 @@ export const burgerIngredientsReducer = (state = initialState, action: TBurgerIn
         }
     }
 }
+
+export default burgerIngredientsReducer;

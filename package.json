@@ -30,7 +30,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "./node_modules/.bin/cypress open",
+    "deploy": "npm run build && scp -r ./build/* admin@84.201.165.103:/home/praktikum/norma-frontend"
   },
   "eslintConfig": {
     "extends": [

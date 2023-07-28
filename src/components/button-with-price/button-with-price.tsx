@@ -59,7 +59,7 @@ const ButtonWithPrice: FC<TButtonWithPrice> = ({price}) => {
                 <div className={styles.currency}>
                     <CurrencyIcon type={"primary"}/>
                 </div>
-                <Button htmlType={"submit"} type={"primary"} size="medium" onClick={onClick}>
+                <Button htmlType={"submit"} type={"primary"} size="medium" onClick={onClick} data-cy="order-button">
                     Оформить заказ
                 </Button>
             </div>

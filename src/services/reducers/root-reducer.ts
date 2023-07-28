@@ -2,8 +2,9 @@ import {
     WS_CONNECTION_SUCCESS,
     WS_CONNECTION_ERROR,
     WS_CONNECTION_CLOSED,
-    WS_GET_MESSAGE, TWSActions
-} from "../actions/wsActionTypes";
+    WS_GET_MESSAGE,
+    TWSActions
+} from "../actions/ws-action-types";
 import {TMessage} from "../types";
 
 export type TWSState = {
@@ -48,3 +49,5 @@ export const wsReducer = (state: TWSState = initialState, action: TWSActions):TW
             return state;
     }
 };
+
+export default wsReducer;
