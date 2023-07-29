@@ -1,7 +1,9 @@
 import {
     POST_LOGIN_REQUEST,
     POST_LOGIN_SUCCESS,
-    POST_LOGIN_FAILED, SET_LOGIN_INITIAL_STATE, TLoginActions
+    POST_LOGIN_FAILED,
+    SET_LOGIN_INITIAL_STATE,
+    TLoginActions
 } from "../actions/login";
 import {setTokens} from "../../utils/localStorage";
 
@@ -11,7 +13,7 @@ export type TLoginState = {
     loginFailed: boolean;
 }
 
-const initialState: TLoginState = {
+export const initialState: TLoginState = {
     loginRequest: false,
     loginSuccess: false,
     loginFailed: false
@@ -51,3 +53,5 @@ export const loginReducer = (state = initialState, action: TLoginActions): TLogi
         }
     }
 }
+
+export default loginReducer;

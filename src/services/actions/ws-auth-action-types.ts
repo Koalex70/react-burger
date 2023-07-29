@@ -1,5 +1,5 @@
 import {TMessage} from "../types";
-import {TWSAuthState} from "../reducers/rootAuthReducer";
+import {TWSAuthState} from "../reducers/root-auth-reducer";
 
 export const WS_CONNECTION_START_AUTH: 'WS_CONNECTION_START_AUTH' = 'WS_CONNECTION_START_AUTH';
 export const WS_CONNECTION_SUCCESS_AUTH: 'WS_CONNECTION_SUCCESS_AUTH' = 'WS_CONNECTION_SUCCESS_AUTH';

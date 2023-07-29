@@ -15,7 +15,7 @@ export type TBurgerIngredientsState = {
     burgerIngredients: ReadonlyArray<TBurgerIngredient>
 }
 
-const initialState: TBurgerIngredientsState = {
+export const initialState: TBurgerIngredientsState = {
     burgerIngredientsRequest: false,
     burgerIngredientsFailed: false,
     burgerIngredients: []
@@ -75,3 +75,5 @@ export const burgerIngredientsReducer = (state = initialState, action: TBurgerIn
         }
     }
 }
+
+export default burgerIngredientsReducer;

@@ -7,7 +7,7 @@ import OrderDetails from "../order-details/order-details";
 import {DELETE_ORDER_DETAILS, postOrderDetails} from "../../services/actions/order-details";
 import {useModal} from "../../hooks/use-modal";
 import {useNavigate} from "react-router-dom";
-import {LOGIN_PATH} from "../../constants/constants";
+import {CREATE_ORDER_BUTTON_TEXT, LOGIN_PATH} from "../../constants/constants";
 import {getBurgerConstructorState} from "../../services/actions/burger-constructor";
 import {TButtonWithPrice} from "../../services/types";
 import {useDispatch} from "../../services/hooks/use-dispatch";
@@ -59,8 +59,8 @@ const ButtonWithPrice: FC<TButtonWithPrice> = ({price}) => {
                 <div className={styles.currency}>
                     <CurrencyIcon type={"primary"}/>
                 </div>
-                <Button htmlType={"submit"} type={"primary"} size="medium" onClick={onClick}>
-                    Оформить заказ
+                <Button htmlType={"submit"} type={"primary"} size="medium" onClick={onClick} data-cy="order-button">
+                    {CREATE_ORDER_BUTTON_TEXT}
                 </Button>
             </div>
             {isModalOpen && modal}

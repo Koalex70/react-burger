@@ -12,7 +12,7 @@ export type TBurgerConstructorState = {
     ingredients: Array<TBurgerConstructorIngredient>;
 }
 
-const initialState: TBurgerConstructorState = {
+export const initialState: TBurgerConstructorState = {
     bun: null,
     ingredients: []
 }
@@ -51,3 +51,5 @@ export const burgerConstructorReducer = (state = initialState, action: TBurgerCo
         }
     }
 }
+
+export default burgerConstructorReducer;

@@ -12,7 +12,7 @@ export type TResetPasswordState = {
     resetPasswordFailed: boolean;
 }
 
-const initialState: TResetPasswordState = {
+export const initialState: TResetPasswordState = {
     resetPasswordRequest: false,
     resetPasswordSuccess: false,
     resetPasswordFailed: false,
@@ -47,3 +47,5 @@ export const resetPasswordReducer = (state = initialState, action: TResetPasswor
             return state;
     }
 }
+
+export default resetPasswordReducer;

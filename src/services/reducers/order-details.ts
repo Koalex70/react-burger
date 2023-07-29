@@ -2,7 +2,8 @@ import {
     POST_ORDER_DETAILS_REQUEST,
     POST_ORDER_DETAILS_FAILED,
     POST_ORDER_DETAILS_SUCCESS,
-    DELETE_ORDER_DETAILS, TOrderDetailsActions,
+    DELETE_ORDER_DETAILS,
+    TOrderDetailsActions,
 } from "../actions/order-details";
 import {TOrderDetails} from "../types";
 
@@ -12,7 +13,7 @@ export type TOrderDetailsState = {
     orderDetails: TOrderDetails | null;
 }
 
-const initialState: TOrderDetailsState = {
+export const initialState: TOrderDetailsState = {
     orderDetailsRequest: false,
     orderDetailsFailed: false,
     orderDetails: null
@@ -52,3 +53,5 @@ export const orderDetailsReducer = (state = initialState, action: TOrderDetailsA
         }
     }
 }
+
+export default orderDetailsReducer;

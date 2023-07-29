@@ -3,6 +3,7 @@ import styles from './ingredient-details.module.css';
 import {useParams} from "react-router-dom";
 import {getBurgerIngredientsState} from "../../services/actions/burger-ingredients";
 import {useSelector} from "../../services/hooks/use-selector";
+import {INGREDIENTS_DETAILS_HEADER} from "../../constants/constants";
 
 const IngredientDetails: FC = () => {
 
@@ -21,7 +22,7 @@ const IngredientDetails: FC = () => {
     return (
         <div className={styles.container}>
             <div className='text text_type_main-large'>
-                Детали ингредиента
+                {INGREDIENTS_DETAILS_HEADER}
             </div>
             <img src={details.image_large} alt={details.name}/>
             <h3 className="text text_type_main-medium mt-4 mb-8">{details.name}</h3>

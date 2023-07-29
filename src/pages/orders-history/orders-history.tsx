@@ -9,7 +9,7 @@ import {
     getWSAuthState,
     WS_CONNECTION_CLOSED_AUTH,
     WS_CONNECTION_START_AUTH
-} from "../../services/actions/wsAuthActionTypes";
+} from "../../services/actions/ws-auth-action-types";
 
 const OrdersHistoryPage = () => {
 

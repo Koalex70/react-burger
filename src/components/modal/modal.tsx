@@ -25,7 +25,7 @@ const Modal:FC<TModal> = ({onClose, title, children}) => {
             <div className={styles.modal}>
                 <div className={styles.header}>
                     {title && <h3 className="text text_type_main-large">{title}</h3>}
-                    <div className={styles.iconClose} onClick={onClose}>
+                    <div className={styles.iconClose} onClick={onClose} data-cy='button-close-modal'>
                         <CloseIcon type={"secondary"}/>
                     </div>
                 </div>

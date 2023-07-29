@@ -69,7 +69,7 @@ const BurgerConstructorElement: FC<TBurgerConstructorElement> = ({ingredient, in
     const preventDefault = (e: { preventDefault: () => void; }) => e.preventDefault();
 
     return (
-        <div className={styles.container} ref={ref} style={{opacity}} onDrop={preventDefault}>
+        <div className={styles.container} ref={ref} style={{opacity}} onDrop={preventDefault} data-cy="constructor-element">
             <DragIcon type={"primary"}/>
             <ConstructorElement text={ingredient.name} thumbnail={ingredient.image_mobile} price={ingredient.price}
                                 extraClass={styles.element} handleClose={handleClose}/>

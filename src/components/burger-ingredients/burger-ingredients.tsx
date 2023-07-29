@@ -66,7 +66,7 @@ const BurgerIngredients: FC = () => {
                     Начинка
                 </Tab>
             </div>
-            <div className={styles.list} onScroll={handleScroll} ref={listsRef}>
+            <div className={styles.list} onScroll={handleScroll} ref={listsRef} data-cy="ingredients">
                 <BurgerIngredientsList title="Булки" filter={BUN} ref={bunsRef}/>
                 <BurgerIngredientsList title="Соусы" filter={SAUCE} ref={saucesRef}/>
                 <BurgerIngredientsList title="Начинка" filter={MAIN} ref={mainsRef}/>

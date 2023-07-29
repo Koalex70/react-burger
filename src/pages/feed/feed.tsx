@@ -4,7 +4,7 @@ import styles from './feed.module.css';
 import ReadyBlock from "../../components/ready-block/ready-block";
 import {FEED_PATH} from "../../constants/constants";
 import {useDispatch} from "../../services/hooks/use-dispatch";
-import {getWSState, WS_CONNECTION_CLOSED, WS_CONNECTION_START} from "../../services/actions/wsActionTypes";
+import {getWSState, WS_CONNECTION_CLOSED, WS_CONNECTION_START} from "../../services/actions/ws-action-types";
 import {useSelector} from "../../services/hooks/use-selector";
 
 export default function FeedPage() {

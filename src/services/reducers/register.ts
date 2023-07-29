@@ -2,7 +2,8 @@ import {
     POST_REGISTER_REQUEST,
     POST_REGISTER_SUCCESS,
     POST_REGISTER_FAILED,
-    SET_REGISTER_INITIAL_STATE, TRegisterActions
+    SET_REGISTER_INITIAL_STATE,
+    TRegisterActions
 } from "../actions/register";
 import {setTokens} from "../../utils/localStorage";
 
@@ -12,7 +13,7 @@ export type TRegisterState = {
     registerSuccess: boolean;
 }
 
-const initialState: TRegisterState = {
+export const initialState: TRegisterState = {
     registerRequest: false,
     registerFailed: false,
     registerSuccess: false,
@@ -51,3 +52,5 @@ export const registerReducer = (state = initialState, action: TRegisterActions):
         }
     }
 }
+
+export default registerReducer;
