@@ -180,6 +180,7 @@ export type TMessage = {
     total: number;
     totalToday: number;
     orders: Array<TOrder>;
+    success?: boolean;
 }
 
 export type TWSStoreActions = {

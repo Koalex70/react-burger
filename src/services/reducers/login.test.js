@@ -1,35 +1,26 @@
 import reducer from './login';
 import * as types from '../actions/login';
+import {initialState} from "./login";
 
 describe('login reducer', () => {
 
     it('should return the initial state', () => {
-        expect(reducer(undefined, {})).toEqual({
-            loginRequest: false,
-            loginSuccess: false,
-            loginFailed: false
-        })
+        expect(reducer(undefined, {})).toEqual(initialState);
     });
 
     it('should handle POST_LOGIN_REQUEST', function () {
-        expect(reducer({
-            loginRequest: false,
-            loginSuccess: false,
-            loginFailed: false
-        }, {
+        expect(reducer(initialState, {
             type: types.POST_LOGIN_REQUEST
         })).toEqual({
+            ...initialState,
             loginRequest: true,
-            loginSuccess: false,
-            loginFailed: false
         })
     });
 
     it('should handle POST_LOGIN_SUCCESS', function () {
         expect(reducer({
+            ...initialState,
             loginRequest: true,
-            loginSuccess: false,
-            loginFailed: false
         }, {
             type: types.POST_LOGIN_SUCCESS,
             payload: {
@@ -37,37 +28,29 @@ describe('login reducer', () => {
                 refreshToken: '2659067c97f302d3640e6c9b6f979e5e6fc5beeed3ace2568d1f1af99439a8b9a5aa1f01c4767153'
             }
         })).toEqual({
-            loginRequest: false,
+            ...initialState,
             loginSuccess: true,
-            loginFailed: false
         })
     });
 
     it('should handle POST_LOGIN_FAILED', function () {
         expect(reducer({
+            ...initialState,
             loginRequest: true,
-            loginSuccess: false,
-            loginFailed: false
         }, {
             type: types.POST_LOGIN_FAILED
         })).toEqual({
-            loginRequest: false,
-            loginSuccess: false,
+            ...initialState,
             loginFailed: true
         })
     });
 
     it('should handle SET_LOGIN_INITIAL_STATE', function () {
         expect(reducer({
-            loginRequest: false,
+            ...initialState,
             loginSuccess: true,
-            loginFailed: false
         }, {
             type: types.SET_LOGIN_INITIAL_STATE
-        })).toEqual({
-            loginRequest: false,
-            loginSuccess: false,
-            loginFailed: false
-        })
+        })).toEqual(initialState)
     });
 })

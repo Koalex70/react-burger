@@ -1,49 +1,38 @@
 import reducer from './root-reducer';
-import * as types from '../actions/ws-action-types'
+import * as types from '../actions/ws-action-types';
+import {initialState} from "./root-reducer";
+import {MESSAGE_WS} from "../../constants/constants";
 
 describe('ws reducer', () => {
 
     it('should return the initial state', function () {
-        expect(reducer(undefined, {})).toEqual({
-            wsConnected: false,
-            message: null
-        })
+        expect(reducer(undefined, {})).toEqual(initialState)
     });
 
     it('should handle WS_CONNECTION_SUCCESS', function () {
-        expect(reducer({
-            wsConnected: false,
-            message: null
-        }, {
+        expect(reducer(initialState, {
             type: types.WS_CONNECTION_SUCCESS
         })).toEqual({
+            ...initialState,
             wsConnected: true,
-            message: null
         })
     });
 
     it('should handle WS_CONNECTION_CLOSED', function () {
         expect(reducer({
+            ...initialState,
             wsConnected: true,
-            message: null
         }, {
             type: types.WS_CONNECTION_CLOSED
-        })).toEqual({
-            wsConnected: false,
-            message: null
-        })
+        })).toEqual(initialState)
     });
 
     it('should handle WS_CONNECTION_ERROR', function () {
-        expect(reducer({
-            wsConnected: false,
-            message: null
-        }, {
+        expect(reducer(initialState, {
             type: types.WS_CONNECTION_ERROR,
             payload: new Error('что-то сломалось')
         })).toEqual({
-            wsConnected: false,
-            message: null,
+            ...initialState,
             error: new Error('что-то сломалось')
         })
     });
@@ -54,74 +43,10 @@ describe('ws reducer', () => {
             message: null
         }, {
             type: types.WS_GET_MESSAGE,
-            payload: {
-                success: true,
-                total: 12856,
-                totalToday: 95,
-                orders: [
-                    {
-                        _id: "64b79ff982e277001bf90d3f",
-                        status: "done",
-                        name: "Space флюоресцентный spicy бургер",
-                        createdAt: "2023-07-19T08:34:01.994Z",
-                        updatedAt: "2023-07-19T08:34:02.144Z",
-                        number: 13227,
-                        ingredients: [
-                            "643d69a5c3f7b9001cfa093d",
-                            "643d69a5c3f7b9001cfa093d",
-                            "643d69a5c3f7b9001cfa0943",
-                            "643d69a5c3f7b9001cfa0942"
-                        ]
-                    },
-                    {
-                        _id: "64b56de882e277001bf907ae",
-                        status: "done",
-                        name: "Флюоресцентный бургер",
-                        createdAt: "2023-07-17T16:35:52.786Z",
-                        updatedAt: "2023-07-17T16:35:52.919Z",
-                        number: 13092,
-                        ingredients: [
-                            "643d69a5c3f7b9001cfa093d",
-                            "643d69a5c3f7b9001cfa093d"
-                        ]
-                    }
-                ]
-            }
+            payload: MESSAGE_WS
         })).toEqual({
             wsConnected: true,
-            message: {
-                success: true,
-                total: 12856,
-                totalToday: 95,
-                orders: [
-                    {
-                        _id: "64b79ff982e277001bf90d3f",
-                        status: "done",
-                        name: "Space флюоресцентный spicy бургер",
-                        createdAt: "2023-07-19T08:34:01.994Z",
-                        updatedAt: "2023-07-19T08:34:02.144Z",
-                        number: 13227,
-                        ingredients: [
-                            "643d69a5c3f7b9001cfa093d",
-                            "643d69a5c3f7b9001cfa093d",
-                            "643d69a5c3f7b9001cfa0943",
-                            "643d69a5c3f7b9001cfa0942"
-                        ]
-                    },
-                    {
-                        _id: "64b56de882e277001bf907ae",
-                        status: "done",
-                        name: "Флюоресцентный бургер",
-                        createdAt: "2023-07-17T16:35:52.786Z",
-                        updatedAt: "2023-07-17T16:35:52.919Z",
-                        number: 13092,
-                        ingredients: [
-                            "643d69a5c3f7b9001cfa093d",
-                            "643d69a5c3f7b9001cfa093d"
-                        ]
-                    }
-                ]
-            }
+            message: MESSAGE_WS
         })
     });
 });

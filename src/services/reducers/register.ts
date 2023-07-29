@@ -13,7 +13,7 @@ export type TRegisterState = {
     registerSuccess: boolean;
 }
 
-const initialState: TRegisterState = {
+export const initialState: TRegisterState = {
     registerRequest: false,
     registerFailed: false,
     registerSuccess: false,

@@ -12,7 +12,7 @@ export type TForgotPasswordState = {
     forgotPasswordFailed: boolean;
 }
 
-const initialState: TForgotPasswordState = {
+export const initialState: TForgotPasswordState = {
     forgotPasswordRequest: false,
     forgotPasswordSuccess: false,
     forgotPasswordFailed: false,

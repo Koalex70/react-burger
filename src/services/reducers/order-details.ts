@@ -13,7 +13,7 @@ export type TOrderDetailsState = {
     orderDetails: TOrderDetails | null;
 }
 
-const initialState: TOrderDetailsState = {
+export const initialState: TOrderDetailsState = {
     orderDetailsRequest: false,
     orderDetailsFailed: false,
     orderDetails: null

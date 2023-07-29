@@ -19,7 +19,7 @@ export type TUserDataState = {
     userData: TUserData | null;
 }
 
-const initialState: TUserDataState = {
+export const initialState: TUserDataState = {
     userDataRequest: false,
     userDataSuccess: false,
     userDataFailed: false,

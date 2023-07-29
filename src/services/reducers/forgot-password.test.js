@@ -1,69 +1,54 @@
 import reducer from './forgot-password';
 import * as types from '../actions/forgot-password';
+import {initialState} from "./forgot-password";
 
 describe('forgot password reducer', () => {
 
     it('should return the initial state', () => {
-        expect(reducer(undefined, {})).toEqual({
-            forgotPasswordRequest: false,
-            forgotPasswordSuccess: false,
-            forgotPasswordFailed: false,
-        })
+        expect(reducer(undefined, {})).toEqual(
+            initialState
+        )
     });
 
     it('should handle POST_FORGOT_PASSWORD_REQUEST', function () {
-        expect(reducer({
-            forgotPasswordRequest: false,
-            forgotPasswordSuccess: false,
-            forgotPasswordFailed: false,
-        }, {
+        expect(reducer(initialState, {
             type: types.POST_FORGOT_PASSWORD_REQUEST
         })).toEqual({
+            ...initialState,
             forgotPasswordRequest: true,
-            forgotPasswordSuccess: false,
-            forgotPasswordFailed: false,
         })
     });
 
     it('should handle POST_FORGOT_PASSWORD_SUCCESS', function () {
         expect(reducer({
+            ...initialState,
             forgotPasswordRequest: true,
-            forgotPasswordSuccess: false,
-            forgotPasswordFailed: false,
         }, {
             type: types.POST_FORGOT_PASSWORD_SUCCESS
         })).toEqual({
-            forgotPasswordRequest: false,
+            ...initialState,
             forgotPasswordSuccess: true,
-            forgotPasswordFailed: false,
         })
     });
 
     it('should handle POST_FORGOT_PASSWORD_FAILED', function () {
         expect(reducer({
+            ...initialState,
             forgotPasswordRequest: true,
-            forgotPasswordSuccess: false,
-            forgotPasswordFailed: false,
         }, {
             type: types.POST_FORGOT_PASSWORD_FAILED
         })).toEqual({
-            forgotPasswordRequest: false,
-            forgotPasswordSuccess: false,
+            ...initialState,
             forgotPasswordFailed: true,
         })
     });
 
     it('should handle SET_FORGOT_PASSWORD_INITIAL_STATE', function () {
         expect(reducer({
-            forgotPasswordRequest: false,
+            ...initialState,
             forgotPasswordSuccess: true,
-            forgotPasswordFailed: false,
         }, {
             type: types.SET_FORGOT_PASSWORD_INITIAL_STATE
-        })).toEqual({
-            forgotPasswordRequest: false,
-            forgotPasswordSuccess: false,
-            forgotPasswordFailed: false,
-        })
+        })).toEqual(initialState)
     });
 })

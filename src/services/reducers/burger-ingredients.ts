@@ -15,7 +15,7 @@ export type TBurgerIngredientsState = {
     burgerIngredients: ReadonlyArray<TBurgerIngredient>
 }
 
-const initialState: TBurgerIngredientsState = {
+export const initialState: TBurgerIngredientsState = {
     burgerIngredientsRequest: false,
     burgerIngredientsFailed: false,
     burgerIngredients: []

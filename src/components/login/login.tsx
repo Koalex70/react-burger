@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from "react";
 import {EmailInput, Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './login.module.css';
-import {FORGOT_PATH, REGISTER_PATH} from "../../constants/constants";
+import {FORGOT_PATH, LOGIN_BUTTON_TEXT, REGISTER_PATH} from "../../constants/constants";
 import {useLocation, useNavigate} from "react-router-dom";
 import {getLoginState, postLogin, SET_LOGIN_INITIAL_STATE} from "../../services/actions/login";
 import {useDispatch} from "../../services/hooks/use-dispatch";
@@ -55,7 +55,7 @@ const Login: FC = () => {
                     extraClass="mb-6 cy-login-password-input"
                 />
                 <Button htmlType="submit" type="primary" size="medium" extraClass="mb-20">
-                    Войти
+                    {LOGIN_BUTTON_TEXT}
                 </Button>
                 <div>
                     <span className='text text_type_main-default text_color_inactive'>Вы — новый пользователь?</span>

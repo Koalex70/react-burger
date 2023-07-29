@@ -1,189 +1,96 @@
 import reducer from './user-data';
-import * as types from '../actions/user-data'
+import * as types from '../actions/user-data';
+import {initialState} from "./user-data";
 
 describe('user data reducer', () => {
 
+    const userData = {
+        email: "mageramovka@yandex.rure",
+        name: "mageramovKA"
+    }
+
     it('should return the initial state', function () {
-        expect(reducer(undefined, {})).toEqual({
-            userDataRequest: false,
-            userDataSuccess: false,
-            userDataFailed: false,
-            updateUserDataRequest: false,
-            updateUserDataSuccess: false,
-            updateUserDataFailed: false,
-            userData: null,
-        })
+        expect(reducer(undefined, {})).toEqual(initialState)
     });
 
     it('should handle GET_USER_DATA_REQUEST', function () {
-        expect(reducer({
-            userDataRequest: false,
-            userDataSuccess: false,
-            userDataFailed: false,
-            updateUserDataRequest: false,
-            updateUserDataSuccess: false,
-            updateUserDataFailed: false,
-            userData: null,
-        }, {
+        expect(reducer(initialState, {
             type: types.GET_USER_DATA_REQUEST
         })).toEqual({
+            ...initialState,
             userDataRequest: true,
-            userDataSuccess: false,
-            userDataFailed: false,
-            updateUserDataRequest: false,
-            updateUserDataSuccess: false,
-            updateUserDataFailed: false,
-            userData: null,
         })
     });
 
     it('should handle GET_USER_DATA_SUCCESS', function () {
         expect(reducer({
+            ...initialState,
             userDataRequest: true,
-            userDataSuccess: false,
-            userDataFailed: false,
-            updateUserDataRequest: false,
-            updateUserDataSuccess: false,
-            updateUserDataFailed: false,
-            userData: null,
         }, {
             type: types.GET_USER_DATA_SUCCESS,
-            payload: {
-                email: "mageramovka@yandex.rure",
-                name: "mageramovKA"
-            }
+            payload: userData
         })).toEqual({
-            userDataRequest: false,
+            ...initialState,
             userDataSuccess: true,
-            userDataFailed: false,
-            updateUserDataRequest: false,
-            updateUserDataSuccess: false,
-            updateUserDataFailed: false,
-            userData: {
-                email: "mageramovka@yandex.rure",
-                name: "mageramovKA"
-            },
+            userData: userData,
         })
     });
 
     it('should handle GET_USER_DATA_FAILED', function () {
         expect(reducer({
+            ...initialState,
             userDataRequest: true,
-            userDataSuccess: false,
-            userDataFailed: false,
-            updateUserDataRequest: false,
-            updateUserDataSuccess: false,
-            updateUserDataFailed: false,
-            userData: null,
         }, {
             type: types.GET_USER_DATA_FAILED
         })).toEqual({
-            userDataRequest: false,
-            userDataSuccess: false,
+            ...initialState,
             userDataFailed: true,
-            updateUserDataRequest: false,
-            updateUserDataSuccess: false,
-            updateUserDataFailed: false,
-            userData: null,
         })
     });
 
     it('should handle UPDATE_USER_DATA_REQUEST', function () {
-        expect(reducer({
-            userDataRequest: false,
-            userDataSuccess: false,
-            userDataFailed: false,
-            updateUserDataRequest: false,
-            updateUserDataSuccess: false,
-            updateUserDataFailed: false,
-            userData: null,
-        }, {
+        expect(reducer(initialState, {
             type: types.UPDATE_USER_DATA_REQUEST
         })).toEqual({
-            userDataRequest: false,
-            userDataSuccess: false,
-            userDataFailed: false,
+            ...initialState,
             updateUserDataRequest: true,
-            updateUserDataSuccess: false,
-            updateUserDataFailed: false,
-            userData: null,
         })
     });
 
     it('should handle UPDATE_USER_DATA_SUCCESS', function () {
         expect(reducer({
-            userDataRequest: false,
-            userDataSuccess: false,
-            userDataFailed: false,
+            ...initialState,
             updateUserDataRequest: true,
-            updateUserDataSuccess: false,
-            updateUserDataFailed: false,
-            userData: null,
         }, {
             type: types.UPDATE_USER_DATA_SUCCESS,
-            payload: {
-                email: "mageramovka@yandex.rure",
-                name: "mageramovKA"
-            }
+            payload: userData
         })).toEqual({
-            userDataRequest: false,
-            userDataSuccess: false,
-            userDataFailed: false,
-            updateUserDataRequest: false,
+            ...initialState,
             updateUserDataSuccess: true,
-            updateUserDataFailed: false,
-            userData: {
-                email: "mageramovka@yandex.rure",
-                name: "mageramovKA"
-            },
+            userData: userData,
         })
     });
 
     it('should handle UPDATE_USER_DATA_FAILED', function () {
         expect(reducer({
-            userDataRequest: false,
-            userDataSuccess: false,
-            userDataFailed: false,
+            ...initialState,
             updateUserDataRequest: true,
-            updateUserDataSuccess: false,
-            updateUserDataFailed: false,
-            userData: null,
         }, {
             type: types.UPDATE_USER_DATA_FAILED,
         })).toEqual({
-            userDataRequest: false,
-            userDataSuccess: false,
-            userDataFailed: false,
-            updateUserDataRequest: false,
-            updateUserDataSuccess: false,
+            ...initialState,
             updateUserDataFailed: true,
-            userData: null,
         })
     });
 
     it('should handle SET_USER_DATA_INITIAL_STATE', function () {
         expect(reducer({
-            userDataRequest: false,
-            userDataSuccess: false,
-            userDataFailed: false,
-            updateUserDataRequest: false,
+            ...initialState,
             updateUserDataSuccess: true,
-            updateUserDataFailed: false,
-            userData: {
-                email: "mageramovka@yandex.rure",
-                name: "mageramovKA"
-            },
+            userData: userData,
         }, {
             type: types.SET_USER_DATA_INITIAL_STATE
-        })).toEqual({
-            userDataRequest: false,
-            userDataSuccess: false,
-            userDataFailed: false,
-            updateUserDataRequest: false,
-            updateUserDataSuccess: false,
-            updateUserDataFailed: false,
-            userData: null,
-        })
+        })).toEqual(initialState)
     });
 
 
